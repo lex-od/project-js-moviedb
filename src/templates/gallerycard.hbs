@@ -1,0 +1,15 @@
+<ul class="gallery-list">
+{{#each this}}
+<li class="gallery-item">
+    <img src="{{poster_path}}" alt="{{title}}" class="gallery-picture" data-id="{{id}}">
+
+    <p class="gallery-title">{{title}}</p>
+
+    <p class="gallery-title accent-color">{{genres}}<span> | </span>{{release_date}}
+        {{#if vote_average}}
+        <span class="vote-average">{{vote_average}}</span>
+        {{/if}}
+    </p>
+</li>
+{{/each}}
+</ul>
