@@ -1,0 +1,12 @@
+:root {
+    --primary-text-color: #000;
+    --primary-background-color: #e5e5e5; //bg основного блока
+    --secondary-color: #fff; // текст в хедере, на кнопках, bg модалки
+    --footer-text-color: #545454; //footer
+    --modal-text-color: #8c8c8c; //текст списка в модалке(Popularity, Genre...)
+    --secondary-background-color: #f7f7f7; //bg footer, фон стрелок право/лево, bg Votes в модалке (фон за числом 1260)
+    --primary-accent-color: #ff6b01; // кнопка модалки, bg рейтинга, описание жанров фильма в карточке
+    --secondary-accent-color: #ff6b08; // сердце, bg номера страницы, подчеркивание в хедере
+    --logo-color: #818181;
+    --search-error-color: #ff001b;
+}
