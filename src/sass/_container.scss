@@ -1,0 +1,15 @@
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+
+    width: 320px;
+
+    @include for-size(tablet) {
+        width: 768px;
+    }
+    @include for-size(desktop) {
+        width: 1200px;
+    }
+}
