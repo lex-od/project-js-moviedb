@@ -31,3 +31,5 @@ export default {
         return API.getTrending({ page: this.page });
     },
 };
+
+
