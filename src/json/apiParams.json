@@ -1,0 +1,8 @@
+{
+    "ENDPOINT": "https://api.themoviedb.org/3",
+    "API_KEY": "512b3f2f5e6e942a99e6ad594dddcaeb",
+
+    "MEDIA_TYPES": ["all", "movie", "tv", "person"],
+    "TIME_WINDOWS": ["day", "week"],
+    "LANGUAGES": ["en-US"]
+}
