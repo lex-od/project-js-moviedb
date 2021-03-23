@@ -6,27 +6,9 @@
 </div>
 <div class="card-content">
     <p class="gallery-title to-uppercase">{{title}}</p>
-{{!-- {{#each genres}} --}}
-    <p class="gallery-title accent-color">Сomedy{{genres_ids}}<span> | </span>{{release_date}}
-    {{!-- {{/each}} --}}
-        {{#if vote_average}}
-        <span class="vote-average">{{vote_average}}</span>
-        {{/if}}
-    </p>
-    </div>
-</li>
-{{/each}}
-</ul><ul class=" list gallery-list">
-{{#each this}}
-<li class="gallery-item">
-    <div class="image-wrapper">
-    <img src="https://image.tmdb.org/t/p/w300{{poster_path}}" alt="{{title}}" class="gallery-picture" data-id="{{id}}">
-</div>
-<div class="card-content">
-    <p class="gallery-title to-uppercase">{{title}}</p>
-{{!-- {{#each genres}} --}}
-    <p class="gallery-title accent-color">Сomedy{{genres_ids}}<span> | </span>{{release_date}}
-    {{!-- {{/each}} --}}
+
+    <p class="gallery-title accent-color">Сomedy{{genres}}<span> | </span>{{release_date}}
+    
         {{#if vote_average}}
         <span class="vote-average">{{vote_average}}</span>
         {{/if}}
