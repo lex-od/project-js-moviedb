@@ -1,5 +1,5 @@
 // 📌 Имортируем как объект pagination
-import Pagination from 'tui-pagination';
+// import Pagination from 'tui-pagination';
 import API from './services/api';
 import paginationTpl from '../templates/pagination.hbs';
 import content from './content';
@@ -40,19 +40,19 @@ export default {
         document
             .querySelector('#inc')
             .addEventListener('click', this.increment.bind(this));
-        console.log(this.page);
+        // console.log(this.page);
     },
     decrement() {
         if (this.page > 1) {
             this.page -= 1;
         }
-        console.log(this.page);
+        // console.log(this.page);
     },
 
     _bindEvents() {
         //  incPage.addEventListener('click', this.increment);
     },
-    renderSvg(){
-document.querySelector('.btnRight').innerHTML = paginationTpl(icons);
-    }
+    renderSvg() {
+        document.querySelector('.btnRight').innerHTML = paginationTpl(icons);
+    },
 };
