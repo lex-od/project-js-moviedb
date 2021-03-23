@@ -18,3 +18,11 @@ API.getTrending().then(({ results }) => {
 // function getCardByRating({ vote_average }) {
 //     vote_average.sort((a, b)=>b-a)
 // }
+// {
+//   "genres": [
+//     {
+//       "id": 28,
+//       "name": "Action"
+//     }
+//   ]
+// }
