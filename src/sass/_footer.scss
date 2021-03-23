@@ -1,1 +1,35 @@
+.footer {
+    color: $footerTextColor;
+    background-color: $secondaryBackgroundColor;
 
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.15;
+}
+
+.footer-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+
+    margin-top: -10px;
+    margin-left: -5px;
+    height: 100px;
+    & .item {
+        margin-top: 10px;
+        margin-left: 5px;
+    }
+    @include for-size(tablet) {
+        width: 768px;
+        height: 77px;
+        font-size: 16px;
+        line-height: 1.19;
+    }
+}
+
+.icon-heart {
+    margin-left: 10px;
+    margin-right: 10px;
+    fill: $secondaryAccentColor;
+}
