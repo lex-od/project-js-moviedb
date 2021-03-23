@@ -100,4 +100,14 @@ export default {
 
         return this._getDiffData(`/movie${paramsLeft}`, paramsRight);
     },
+
+    getMovieGenres({ language = 'en-US' }) {
+        let paramsRight = '';
+
+        if (apiParams.LANGUAGES.includes(language)) {
+            paramsRight += `&language=${language}`;
+        }
+
+        return this._getDiffData('/genre/movie/list', paramsRight);
+    },
 };
