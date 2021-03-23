@@ -1,5 +1,6 @@
 import API from './services/api';
 import pagination from './pagination';
+import genresService from './services/genresService';
 
 // 📌 Имортируем как объект content
 
@@ -13,6 +14,8 @@ export default {
     },
 
     async render() {
+        await genresService.loadFromApi();
+
         const tpl = require('../templates/' + this._tpl + '.content.hbs');
         const response = await this.initData();
         this._parentNode.innerHTML = tpl(response.results);
@@ -31,5 +34,3 @@ export default {
         return API.getTrending({ page: this.page });
     },
 };
-
-
