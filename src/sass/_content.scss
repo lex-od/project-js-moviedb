@@ -6,10 +6,6 @@
         padding-top: 60px;
         padding-bottom: 50px;
     }
-    @include for-size(desktop) {
-        padding-top: 60px;
-        padding-bottom: 50px;
-    }
 }
 .gallery-list {
     @include for-size(tablet) {
@@ -25,14 +21,12 @@
     border-radius: 5px;
     margin-bottom: 20px;
     @include for-size(tablet) {
-        flex-basis: calc(100% / 2- 30px);
+        flex-basis: calc(100% / 2- 15px);
         margin-top: 15px;
         margin-left: 15px;
     }
     @include for-size(desktop) {
-        flex-basis: calc(100% / 4- 30px);
-        margin-top: 15px;
-        margin-left: 15px;
+        flex-basis: calc(100% / 4- 15px);
     }
 }
 
@@ -47,18 +41,17 @@
 }
 
 .gallery-title.accent-color {
-    color: #ff6b08;
+    color: $primaryAccentColor;
     margin: 0;
 }
 
 .vote-average {
     display: inline-flex;
-    align-items: center;
     justify-content: center;
-    color: #ffffff;
+    color: $secondaryColor;
     border-radius: 5px;
     width: 36px;
     height: 16px;
-    background-color: #ff6b08;
+    background-color: $primaryAccentColor;
     margin-left: 3px;
 }
