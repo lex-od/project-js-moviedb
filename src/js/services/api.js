@@ -2,6 +2,24 @@ import apiParams from '../../json/apiParams';
 
 // 📌 Имортируем как объект API
 
+// 📌 Примеры использования
+
+// API.getTrending({ mediaType: 'movie', timeWindow: 'day', page: 2 }).then(
+//     result => {
+//         console.log(result);
+//     },
+// );
+
+// API.searchMovies({ query: 'wanted', page: 14, language: 'en-US' }).then(
+//     result => {
+//         console.log(result);
+//     },
+// );
+
+// API.getMovieDetails({ movieId: 101, language: 'en-US' }).then(result => {
+//     console.log(result);
+// });
+
 export default {
     _getDiffData(paramsLeft, paramsRight = '') {
         return fetch(
