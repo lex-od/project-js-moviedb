@@ -6,10 +6,6 @@
         padding-top: 60px;
         padding-bottom: 50px;
     }
-    @include for-size(desktop) {
-        padding-top: 60px;
-        padding-bottom: 50px;
-    }
 }
 .gallery-list {
     @include for-size(tablet) {
@@ -25,14 +21,12 @@
     border-radius: 5px;
     margin-bottom: 20px;
     @include for-size(tablet) {
-        flex-basis: calc(100% / 2- 30px);
+        flex-basis: calc(100% / 2- 15px);
         margin-top: 15px;
         margin-left: 15px;
     }
     @include for-size(desktop) {
-        flex-basis: calc(100% / 4- 30px);
-        margin-top: 15px;
-        margin-left: 15px;
+        flex-basis: calc(100% / 4- 15px);
     }
 }
 
@@ -53,7 +47,6 @@
 
 .vote-average {
     display: inline-flex;
-    align-items: center;
     justify-content: center;
     color: #ffffff;
     border-radius: 5px;
