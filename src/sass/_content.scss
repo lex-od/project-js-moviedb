@@ -41,17 +41,17 @@
 }
 
 .gallery-title.accent-color {
-    color: #ff6b08;
+    color: $primaryAccentColor;
     margin: 0;
 }
 
 .vote-average {
     display: inline-flex;
     justify-content: center;
-    color: #ffffff;
+    color: $secondaryColor;
     border-radius: 5px;
     width: 36px;
     height: 16px;
-    background-color: #ff6b08;
+    background-color: $primaryAccentColor;
     margin-left: 3px;
 }
