@@ -11,11 +11,5 @@ export default {
     render() {
         // const tpl = require('../templates/' + this._tpl + '.footer.hbs');
         // this._parentNode.innerHTML = tpl();
-
-        this._bindEvents();
-    },
-
-    _bindEvents() {
-        //
     },
 };
