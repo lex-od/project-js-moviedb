@@ -1,17 +1,35 @@
 // 📌 Имортируем как объект pagination
+
+export default {
+    _parentNode: null,
+    _tpl: 'base',
+
+    linkParent(selector) {
+        this._parentNode = document.querySelector(selector);
+    },
+
+    render() {
+        // const tpl = require('../templates/' + this._tpl + '.pagination.hbs');
+        // this._parentNode.innerHTML = tpl();
+
+        this._bindEvents();
+    },
+
+    _bindEvents() {
+        //
+    },
+};
+
 import API from './services/api';
 import filmTpl from '../templates/movies.hbs';
 import one from '../templates/firstPage.hbs';
 import paginationTpl from '../templates/pagination.hbs'
+// import Pagination from 'tui-pagination';
 
-
-export default class Pagination{
-    constructor(){
-
-    }
-    
-    
-};
+// export default class Pagination{
+//   constructor(){
+//    }
+// };
 
 
 const refs = {
@@ -63,3 +81,23 @@ const refs = {
       insertItems();
     }
   }
+
+// pagination.on('afterMove', function(eventData) {
+//     alert('The current page is ' + eventData.page);
+// });
+
+    /* <object id="dec">
+      <button type="button" class="btnRight"><svg src="./images/icons/arrow-left.svg" width=20 height=20 id="arrow-left"></svg></button>       
+</object>
+        <a href="#" class="repos-pagination__link">1</a>
+        <span class="repos-pagination__dots">...</span>      
+        <a href="#" class="repos-pagination__link" id="#pagNext">2</a>
+        <a href="#" class="repos-pagination__link" id="#pagNext2">3</a>
+        <a href="#" class="repos-pagination__link" id="#pagPrev">4</a>
+        <a href="#" class="repos-pagination__link" id="#pagPrev2">5</a>
+        <a href="#" class="repos-pagination__link" id="#pagPrev2">6</a>
+        <span class="repos-pagination__dots">...</span>
+        <a href="#" class="repos-pagination__link">{{pageNext20}}</a>
+<object id="inc">
+     <button type="button" class="btnRight right"><svg src="./images/icons/arrow-left.svg" width=20 height=20 id="inc"></svg></button>       
+</object> */

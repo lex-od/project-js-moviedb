@@ -1,8 +1,4 @@
 import './styles.scss';
-// import API from './js/services/api';
+import init from './render';
 
 init();
-
-function init() {
-    //
-}
