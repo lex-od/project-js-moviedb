@@ -1,9 +1,25 @@
 // 📌 Имортируем как объект pagination
-import Pagination from 'tui-pagination';
-export default {
-    //
-};
+// import Pagination from 'tui-pagination';
 
+export default {
+    _parentNode: null,
+    _tpl: 'base',
+
+    linkParent(selector) {
+        this._parentNode = document.querySelector(selector);
+    },
+
+    render() {
+        // const tpl = require('../templates/' + this._tpl + '.pagination.hbs');
+        // this._parentNode.innerHTML = tpl();
+
+        this._bindEvents();
+    },
+
+    _bindEvents() {
+        //
+    },
+};
 
 // let pagination = new Pagination('pagination', {
 //     totalItems: 500
@@ -16,7 +32,8 @@ export default {
 // pagination.on('afterMove', function(eventData) {
 //     alert('The current page is ' + eventData.page);
 // });
-{/* <object id="dec">
+{
+    /* <object id="dec">
       <button type="button" class="btnRight"><svg src="./images/icons/arrow-left.svg" width=20 height=20 id="arrow-left"></svg></button>       
 </object>
         <a href="#" class="repos-pagination__link">1</a>
@@ -30,4 +47,5 @@ export default {
         <a href="#" class="repos-pagination__link">{{pageNext20}}</a>
 <object id="inc">
      <button type="button" class="btnRight right"><svg src="./images/icons/arrow-left.svg" width=20 height=20 id="inc"></svg></button>       
-</object> */}
+</object> */
+}
