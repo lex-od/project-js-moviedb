@@ -1,5 +1,4 @@
 // 📌 Имортируем как объект pagination
-// import Pagination from 'tui-pagination';
 
 export default {
     _parentNode: null,
@@ -21,18 +20,72 @@ export default {
     },
 };
 
-// let pagination = new Pagination('pagination', {
-//     totalItems: 500
-// });
+import API from './services/api';
+import filmTpl from '../templates/movies.hbs';
+import one from '../templates/firstPage.hbs';
+import paginationTpl from '../templates/pagination.hbs'
+// import Pagination from 'tui-pagination';
 
-// pagination.on('beforeMove', function(eventData) {
-//     return confirm('Go to page ' + eventData.page + '?');
-// });
+// export default class Pagination{
+//   constructor(){
+//    }
+// };
+
+
+const refs = {
+    galleryCont: document.querySelector('.film-list'),
+  };
+  let page = 1;
+  let baseUrl = `https://api.themoviedb.org/3/trending/movie/day?api_key=512b3f2f5e6e942a99e6ad594dddcaeb&page=`;
+  
+  insertItems();
+  
+  function insertItems() {
+    fetch(baseUrl + page)
+      .then(res => res.json())
+      .then(data => {
+        const markup = data.results.map(item => filmTpl(item)).join('');
+        refs.galleryCont.innerHTML = markup;
+        console.log(page);
+      });
+  }
+  
+  let pageDiv = document.querySelector('#pagDiv');
+  
+  function pagMarkup() {
+    if (page === 1) {
+      pageDiv.innerHTML = one();
+    }
+    if (page > 1) {
+      pageDiv.innerHTML = paginationTpl();
+      let decPage = document.querySelector('#dec');
+      decPage.addEventListener('click', decrement);
+    }
+  }
+  pagMarkup();
+  
+  let incPage = document.querySelector('#inc');
+  incPage.addEventListener('click', increment);
+  
+  function increment() {
+    page += 1;
+    insertItems();
+    pagMarkup();
+    let incPage = document.querySelector('#inc');
+    incPage.addEventListener('click', increment);
+  }
+  
+  function decrement() {
+    if (page > 1) {
+      page -= 1;
+      insertItems();
+    }
+  }
 
 // pagination.on('afterMove', function(eventData) {
 //     alert('The current page is ' + eventData.page);
 // });
-{
+
     /* <object id="dec">
       <button type="button" class="btnRight"><svg src="./images/icons/arrow-left.svg" width=20 height=20 id="arrow-left"></svg></button>       
 </object>
@@ -48,4 +101,3 @@ export default {
 <object id="inc">
      <button type="button" class="btnRight right"><svg src="./images/icons/arrow-left.svg" width=20 height=20 id="inc"></svg></button>       
 </object> */
-}
