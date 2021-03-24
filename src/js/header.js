@@ -1,12 +1,14 @@
 import content from './content';
 import params from '../json/headerParams.json';
+import debounce from 'lodash.debounce';
+import API from './services/api';
 
 // 📌 Имортируем как объект header
 
 export default {
     _parentNode: null,
     _navPagesRef: null,
-    // _inputRef: null,
+    _inputRef: null,
 
     _tplName: params.TPL_NAMES.home,
     _currTpl: null,
@@ -44,7 +46,15 @@ export default {
     _linkRefs() {
         this._navPagesRef = this._parentNode.querySelector('#nav-pages');
 
-        // this._inputRef = this._parentNode.querySelector('#input');
+        switch (this._tplName) {
+            case params.TPL_NAMES.home:
+                this._inputRef = this._parentNode.querySelector(
+                    '#search-input',
+                );
+                break;
+            case params.TPL_NAMES.library:
+                break;
+        }
     },
 
     _bindEvents() {
@@ -53,7 +63,16 @@ export default {
             this._onNavPagesClick.bind(this),
         );
 
-        // this._inputRef.addEventListener('input', this.inputHandler.bind(this));
+        switch (this._tplName) {
+            case params.TPL_NAMES.home:
+                this._inputRef.addEventListener(
+                    'input',
+                    debounce(this.onInput, 500).bind(this),
+                );
+                break;
+            case params.TPL_NAMES.library:
+                break;
+        }
     },
 
     _onNavPagesClick(e) {
@@ -65,7 +84,9 @@ export default {
         this.render();
     },
 
-    inputHandler(event) {
+    onInput(e) {
+        console.log(e.target.value);
+
         // Пример вызова отрисовки галереи по событию
         // content.initData = async () => {
         //     return API.searchMovies();
