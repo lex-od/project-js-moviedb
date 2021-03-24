@@ -17,7 +17,7 @@
 .modal-window {
     width: 280px;
     position: relative;
-    margin: 0 auto;
+    margin: 10px auto;
     padding: 48px 20px 41px 20px;
     background-color: #ffffff;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
@@ -29,6 +29,11 @@
         width: 618px;
         display: flex;
         padding: 42px 28px 40px 28px;
+        margin: auto;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
     @include for-size(desktop) {
         width: 882px;
@@ -36,9 +41,12 @@
     }
 }
 .close-modal {
-    // width: 14px;
-    // height: 14px;
-    background: transparent;
+    display: block;
+    background-image: url('./images/close-icon.svg');
+    background-color: #fff;
+    width: 24px;
+    height: 24px;
+
     border: none;
     position: absolute;
     top: 18px;
