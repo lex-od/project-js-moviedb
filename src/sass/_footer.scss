@@ -5,6 +5,10 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 1.15;
+    .container {
+        display: flex;
+        justify-content: center;
+    }
 }
 
 .footer-list {
@@ -16,7 +20,7 @@
     margin-top: -10px;
     margin-left: -5px;
     height: 100px;
-    & .item {
+    .item {
         margin-top: 10px;
         margin-left: 5px;
     }
