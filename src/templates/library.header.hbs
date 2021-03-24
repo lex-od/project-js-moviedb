@@ -1,8 +1,18 @@
-<div class="header-page-second">
-    <button type="button" class="btn is-hidden" data-action="watched">
-        <span class="label">WATCHED</span>
-    </button>
-    <button type="button" class="btn is-hidden" data-action="queue">
-        <span class="label">QUEUE</span>
-    </button>
+<div class="page-library-header header-conteiner-page">
+    <nav class="navigation">
+        <a class="logo-link" href="../index.html">
+            <span class="icon-logo"><svg width="24" height="24">
+                    {{!-- <use href="../images/icons.svg#icon-logo-film"></use> --}}
+                </svg></span>
+            <span class="title-logo">Filmoteka</span>
+        </a>
+        <div class="nav-pages">
+            <a class="nav-pages-link" href="#header-container">HOME</a>
+            <a class="nav-pages-link action" href="#content">MY LIBRARY</a>
+        </div>
+    </nav>
+    <div class="page-library">
+        <button type="button" class="header-btn" data-action="watched">WATCHED</button>
+        <button type="button" class="header-btn" data-action="queue">QUEUE</button>
+    </div>
 </div>
