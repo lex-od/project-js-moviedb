@@ -17,8 +17,6 @@ export default {
     },
 
     async render() {
-        await genresService.loadFromApi();
-
         try {
             this.loadCurrTemplate();
 
@@ -32,9 +30,6 @@ export default {
         }
 
         this._bindEvents();
-
-        pagination.linkParent('#pagination');
-        pagination.render();
     },
 
     _bindEvents() {

@@ -1,5 +1,13 @@
+.pagination{
+    max-width: 374px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+
 #pagDiv {
  color: #000;
+ max-width: 374px;
     box-sizing: border-box;
     display: flex;
     padding-top: 40px;
@@ -25,12 +33,12 @@
 
 .repos-pagination__link {
     text-decoration: none;
-    color: var($primaryAccentColor);
+    color: black;
     transition: all 0.3s;
 }
 
 .repos-pagination__link:hover {
-    color: var($primaryAccentColor);
+    color: #FF6B08;
 }
 
 .repos-pagination__link,
@@ -59,20 +67,24 @@
     border-radius: 5px;
     color: white;
 }
-#first {
-    margin-left: 16px;
-}
+
 .btnRight {
     cursor: pointer;
-    width: 40px;
-    height: 40px;
+    color: black;
+    width: 50px;
+    height: 50px;
     background-image: url('./images/arrow-right.svg');
     background-repeat: no-repeat;
     background-position: center;
+    background-size: 25px;
     border-radius: 5px;
     border: none;
     margin-right: 16px;
 }
 .btnRight.right{
     margin-right: 10px;
+    
+}
+.btnRight:hover{
+   background-color:  #FF6B08;
 }

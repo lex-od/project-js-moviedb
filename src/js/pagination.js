@@ -4,53 +4,50 @@ import paginationTpl from '../templates/pagination.hbs';
 import content from './content';
 
 export default {
-    _parentNode: null,
+    parentNode: null,
     galleryCont: null,
-    pageDiv: null,
+    pagDiv: null,
+    incrementBtn: null,
+    decrementBtn: null,
+
     page: 1,
-    linkParent(selektor) {
-        this._parentNode = document.querySelector('.pagination');
+    linkParent(selector) {
+        this.parentNode = document.querySelector(selector);
     },
-    _linkRefs() {
-        this.galleryCont = document.querySelector('.gallery-list');
-        this.pageDiv = document.querySelector('#pagDiv');
+
+    linkRefs() {
+        this.incrementBtn = document.querySelector('#inc');
+        this.decrementBtn = document.querySelector('#dec');
     },
+
+    bindEvents() {
+        this.incrementBtn.addEventListener('click', this.increment.bind(this));
+        this.decrementBtn.addEventListener('click', this.decrement.bind(this));
+    },
+
     render() {
-        // content.linkParent('.pagination');
-        // //  content.render();
-
-        // content.initData();
-
-        this._parentNode.innerHTML = paginationTpl();
-
-        this._linkRefs();
         this.pagMarkup();
-        this._bindEvents();
-
-       
+        this.linkRefs();
+        this.bindEvents();
     },
 
     pagMarkup() {
-        this.pageDiv.innerHTML = paginationTpl();
-        document
-            .querySelector('#dec')
-            .addEventListener('click', this.decrement.bind(this));
+        this.parentNode.innerHTML = paginationTpl();
     },
+
     increment() {
+        console.log(this.page);
         this.page += 1;
-
-        this.pagMarkup();
-        document
-            .querySelector('#inc')
-            .addEventListener('click', this.increment.bind(this));
+        content.page = this.page;
+        content.render();
     },
+
     decrement() {
-        if (this.page > 1) {
-            this.page -= 1;
+        if (this.page <= 1) {
+            return;
         }
-    },
-
-    _bindEvents() {
-        //  incPage.addEventListener('click', this.increment);
+        this.page -= 1;
+        content.page = this.page;
+        content.render();
     },
 };
