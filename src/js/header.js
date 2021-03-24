@@ -4,19 +4,40 @@ import content from './content';
 
 export default {
     _parentNode: null,
-    _tpl: 'home',
-    // _inputRef: null,
+    _inputRef: null,
+
+    _tplNames: {
+        home: 'home',
+        library: 'library',
+    },
+    _currTpl: null,
 
     linkParent(selector) {
         this._parentNode = document.querySelector(selector);
     },
 
     render() {
-        const tpl = require('../templates/' + this._tpl + '.header.hbs');
-        this._parentNode.innerHTML = tpl();
+        try {
+            this.loadCurrTemplate(this._tplNames.home);
+            this.renderCurrTplMarkup();
+        } catch (err) {
+            this._errorHandler(err);
+        }
 
         this._linkRefs();
         this._bindEvents();
+    },
+
+    loadCurrTemplate(tplName) {
+        this._currTpl = require('../templates/' + tplName + '.header.hbs');
+    },
+
+    renderCurrTplMarkup() {
+        this._parentNode.innerHTML = this._currTpl();
+    },
+
+    _errorHandler(err) {
+        console.log(`${err.name}: ${err.message}`);
     },
 
     _linkRefs() {
