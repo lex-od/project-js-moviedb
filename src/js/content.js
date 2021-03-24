@@ -1,12 +1,13 @@
 import API from './services/api';
 import pagination from './pagination';
 import genresService from './services/genresService';
+// import modal from './modal';
 
 // 📌 Имортируем как объект content
 
 export default {
     _parentNode: null,
-
+    // _movieListNode: null,
     _tplName: 'gallery',
     _currTpl: null,
 
@@ -33,12 +34,15 @@ export default {
 
         this._bindEvents();
 
+        modal.linkParent('.backdrop');
         pagination.linkParent('#pagination');
         pagination.render();
     },
-
+    _linkRefs() {
+        // this._movieListNode = this._parentNode.querySelector('.gallery-list');
+    },
     _bindEvents() {
-        //
+        this._inputRef.addEventListener('click', this.inputHandler.bind(this));
     },
 
     getIncomingData() {
@@ -66,5 +70,13 @@ export default {
 
     _incomErrorHandler(err) {
         console.log(`${err.name}: ${err.message}`);
+    },
+
+    inputHandler(event) {
+        // Пример вызова отрисовки галереи по событию
+        // content.initData = async () => {
+        //     return API.searchMovies();
+        // };
+        // content.render();
     },
 };
