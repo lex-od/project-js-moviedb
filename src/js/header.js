@@ -1,15 +1,14 @@
 import content from './content';
+import params from '../json/headerParams.json';
 
 // 📌 Имортируем как объект header
 
 export default {
     _parentNode: null,
-    _inputRef: null,
+    _navPagesRef: null,
+    // _inputRef: null,
 
-    _tplNames: {
-        home: 'home',
-        library: 'library',
-    },
+    _tplName: params.TPL_NAMES.home,
     _currTpl: null,
 
     linkParent(selector) {
@@ -18,18 +17,20 @@ export default {
 
     render() {
         try {
-            this.loadCurrTemplate(this._tplNames.home);
+            this.loadCurrTemplate();
             this.renderCurrTplMarkup();
+
+            this._linkRefs();
+            this._bindEvents();
         } catch (err) {
             this._errorHandler(err);
         }
-
-        this._linkRefs();
-        this._bindEvents();
     },
 
     loadCurrTemplate(tplName) {
-        this._currTpl = require('../templates/' + tplName + '.header.hbs');
+        this._currTpl = require('../templates/' +
+            this._tplName +
+            '.header.hbs');
     },
 
     renderCurrTplMarkup() {
@@ -41,12 +42,27 @@ export default {
     },
 
     _linkRefs() {
-        // Образец подключения ссылки на ДОМ-элемент (указать селектор)
+        this._navPagesRef = this._parentNode.querySelector('#nav-pages');
+
         // this._inputRef = this._parentNode.querySelector('#input');
     },
 
     _bindEvents() {
+        this._navPagesRef.addEventListener(
+            'click',
+            this._onNavPagesClick.bind(this),
+        );
+
         // this._inputRef.addEventListener('input', this.inputHandler.bind(this));
+    },
+
+    _onNavPagesClick(e) {
+        if (e.target.tagName !== 'A') {
+            return;
+        }
+
+        this._tplName = params.TPL_NAMES[e.target.dataset.tpl];
+        this.render();
     },
 
     inputHandler(event) {
