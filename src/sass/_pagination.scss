@@ -1,7 +1,9 @@
 #pagDiv {
+ color: #000;
+    box-sizing: border-box;
     display: flex;
     padding-top: 40px;
-     margin-bottom: 30px;
+    padding-bottom: 60px;
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
@@ -22,6 +24,7 @@
 }
 
 .repos-pagination__link {
+    text-decoration: none;
     color: var($primaryAccentColor);
     transition: all 0.3s;
 }
@@ -34,13 +37,9 @@
 .repos-pagination__dots {
     padding-right: 0.8rem;
 }
-#inc {
-    cursor: pointer;
-}
-#dec {
-    cursor: pointer;
-}
+
 .right {
+    margin-right: 10px;
     transform: rotate(180deg);
     border-radius: 5px;
 }
@@ -56,7 +55,7 @@
 
     width: 40px;
     height: 40px;
-    // background: url('../images/curentPage.jpg');
+    background: url('./images/curentPage.jpg');
     border-radius: 5px;
     color: white;
 }
@@ -64,12 +63,16 @@
     margin-left: 16px;
 }
 .btnRight {
+    cursor: pointer;
     width: 40px;
     height: 40px;
-    // background-image: url(../images/icons.svg/icon-arrow-left);
+    background-image: url('./images/arrow-right.svg');
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 5px;
     border: none;
     margin-right: 16px;
+}
+.btnRight.right{
+    margin-right: 10px;
 }
