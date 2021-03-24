@@ -28,9 +28,10 @@
     display: flex;
     text-decoration: none;
     align-self: baseline;
+    align-items: baseline;
 }
 .icon-logo {
-    align-self: center;
+    background-image: url('./images/header/filmoteka-icon.svg');
     width: 24px;
     height: 24px;
 }
@@ -122,10 +123,15 @@ input::-webkit-input-placeholder {
     position: absolute;
     background: none;
     border: none;
-    top: 0;
-    right: 0;
+    top: 6px;
+    right: 2px;
     width: 40px;
     height: 100%;
+}
+.search .submit{
+    background-image: url('./images/header/search-icon-header.svg');
+    width: 12px; 
+    height: 12px;
 }
 
 
