@@ -6,7 +6,10 @@ import genresService from './services/genresService';
 
 export default {
     _parentNode: null,
-    _tpl: 'gallery',
+
+    _tplName: 'gallery',
+    _currTpl: null,
+
     page: 1,
 
     linkParent(selector) {
@@ -16,9 +19,17 @@ export default {
     async render() {
         await genresService.loadFromApi();
 
-        const tpl = require('../templates/' + this._tpl + '.content.hbs');
-        const response = await this.initData();
-        this._parentNode.innerHTML = tpl(response.results);
+        try {
+            this.loadCurrTemplate();
+
+            const incomData = await this.getIncomingData();
+
+            incomData.results = this.addGenresStr(incomData.results);
+
+            this.renderCurrTplMarkup(incomData.results);
+        } catch (err) {
+            this._incomErrorHandler(err);
+        }
 
         this._bindEvents();
 
@@ -30,7 +41,30 @@ export default {
         //
     },
 
-    async initData() {
+    getIncomingData() {
         return API.getTrending({ page: this.page });
+    },
+
+    addGenresStr(movieArr) {
+        return movieArr.map(movie => {
+            return {
+                ...movie,
+                genres_str: genresService.idListToString(movie.genre_ids, 2),
+            };
+        });
+    },
+
+    renderCurrTplMarkup(movieArr) {
+        this._parentNode.innerHTML = this._currTpl(movieArr);
+    },
+
+    loadCurrTemplate() {
+        this._currTpl = require('../templates/' +
+            this._tplName +
+            '.content.hbs');
+    },
+
+    _incomErrorHandler(err) {
+        console.log(`${err.name}: ${err.message}`);
     },
 };
