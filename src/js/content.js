@@ -10,7 +10,6 @@ export default {
     _movieListNode: null,
     _tplName: 'gallery',
     _currTpl: null,
-
     page: 1,
 
     linkParent(selector) {
@@ -40,6 +39,7 @@ export default {
     },
     _linkRefs() {
         this._movieListNode = this._parentNode.querySelector('.gallery-list');
+        // this._image = this._parentNode.querySelector('.gallery-picture');
     },
     _bindEvents() {
         this._movieListNode.addEventListener(
@@ -76,6 +76,15 @@ export default {
     },
 
     onMovieListClick(event) {
-        //modal.show(Number(id))
+        event.preventDefault();
+
+        if (event.target === event.currentTarget) {
+            return;
+        }
+        const movieCard = event.target.closest('.gallery-item');
+        // console.log(movieCard);
+        const movieId = movieCard.dataset.source;
+
+        modal.show(movieId);
     },
 };
