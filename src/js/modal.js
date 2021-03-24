@@ -1,10 +1,13 @@
-// 📌 Имортируем как объект modal
 import API from '../js/services/api';
+
+// 📌 Имортируем как объект modal
 
 export default {
     _parentNode: null,
-    _currTpl: null,
+
     _tplName: 'base',
+    _currTpl: null,
+
     _closeModalBtnRef: null,
     _addToWatchedBtnRef: null,
     _addToQueueBtnRef: null,
@@ -13,33 +16,47 @@ export default {
         this._parentNode = document.querySelector(selector);
     },
 
-    async show(id) {
-        loadCurrTemplate();
-        this._linkRefs();
-        this._bindEvents();
-        this._paretnNode.classList.remove('modal-is-hidden');
+    async render(movieId) {
         try {
-            result = await API.getMovieDetails({ movieId: id });
-            this._paretnNode.innerHTML = this._currTpl(result);
+            this.loadCurrTemplate();
+
+            const movieObj = await API.getMovieDetails({ movieId });
+
+            this.renderCurrTplMarkup(movieObj);
+
+            this._linkRefs();
+            this._bindEvents();
         } catch (err) {
             this._incomErrorHandler(err);
         }
     },
 
     _bindEvents() {
-        _closeModalBtnRef.addEventListener('click', closeModal.bind(this));
+        this._closeModalBtnRef.addEventListener(
+            'click',
+            this.clearMarkup.bind(this),
+        );
     },
 
     loadCurrTemplate() {
         this._currTpl = require('../templates/' + this._tplName + '.modal.hbs');
     },
 
+    renderCurrTplMarkup(movieObj) {
+        this._parentNode.innerHTML = this._currTpl(movieObj);
+
+        this._parentNode.classList.remove('modal-is-hidden');
+    },
+
+    clearMarkup() {
+        this._parentNode.classList.add('modal-is-hidden');
+
+        this._parentNode.innerHTML = '';
+    },
+
     _linkRefs() {
-        // Образец подключения ссылки на ДОМ-элемент (указать селектор)
-        // this._inputRef = this._parentNode.querySelector('#input');
-        this._closeModalBtnRef = this._parentNode.querySelector(
-            '#close-lightbox',
-        );
+        this._closeModalBtnRef = this._parentNode.querySelector('#close-modal');
+
         this._addToWatchedBtnRef = this._parentNode.querySelector(
             '#js-watched-button',
         );
@@ -48,18 +65,13 @@ export default {
         );
     },
 
-    closeModal() {
-        this._parentNode.classList.add('modal-is-hidden');
-        this._parentNode.innerHTML = '';
-    },
-
-    pressKey(e) {
-        if (e.key === 'Escape') return this.closeModal();
-    },
-
     _incomErrorHandler(err) {
         console.log(`${err.name}: ${err.message}`);
     },
+
+    // pressKey(e) {
+    //     if (e.key === 'Escape') return this.closeModal();
+    // },
 };
 
 // addToWatchedBtnRef.addEventListener('click', addToWatched);

@@ -81,6 +81,6 @@ export default {
         // console.log(movieCard);
         const movieId = movieCard.dataset.source;
 
-        modal.show(movieId);
+        modal.render(Number(movieId));
     },
 };
