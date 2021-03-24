@@ -5,7 +5,6 @@ import content from './content';
 export default {
     _parentNode: null,
     _tpl: 'home',
-
     // _inputRef: null,
 
     linkParent(selector) {
