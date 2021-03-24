@@ -1,16 +1,14 @@
 // 📌 Имортируем как объект pagination
-// import Pagination from 'tui-pagination';
-import API from './services/api';
+
 import paginationTpl from '../templates/pagination.hbs';
 import content from './content';
-import icons from '../images/icons.svg';
 
 export default {
     _parentNode: null,
     galleryCont: null,
     pageDiv: null,
     page: 1,
-    linkParent() {
+    linkParent(selektor) {
         this._parentNode = document.querySelector('.pagination');
     },
     _linkRefs() {
@@ -18,13 +16,18 @@ export default {
         this.pageDiv = document.querySelector('#pagDiv');
     },
     render() {
+        // content.linkParent('.pagination');
+        // //  content.render();
+
+        // content.initData();
+
         this._parentNode.innerHTML = paginationTpl();
 
         this._linkRefs();
         this.pagMarkup();
         this._bindEvents();
-        this.increment();
-        this.decrement();
+
+       
     },
 
     pagMarkup() {
@@ -40,19 +43,14 @@ export default {
         document
             .querySelector('#inc')
             .addEventListener('click', this.increment.bind(this));
-        // console.log(this.page);
     },
     decrement() {
         if (this.page > 1) {
             this.page -= 1;
         }
-        // console.log(this.page);
     },
 
     _bindEvents() {
         //  incPage.addEventListener('click', this.increment);
-    },
-    renderSvg() {
-        document.querySelector('.btnRight').innerHTML = paginationTpl(icons);
     },
 };
