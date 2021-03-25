@@ -134,12 +134,18 @@ export default {
         content.render();
 
         function getIncDataOvrWatched() {
-            // return API.getTrending({ page: this.page });
-            console.log('watched');
+            // const watchedList = new LocalStorageUtils().getWatched();
+            // const indexFrom = (this.page - 1) * 20;
+            // const results = watchedList.slice(indexFrom, indexFrom + 20);
+            // const total_pages = Math.ceil(watchedList.length / 20);
+            // return Promise.resolve({ results, total_pages });
         }
         function getIncDataOvrQueue() {
-            // return API.getTrending({ page: this.page });
-            console.log('queue');
+            // const watchedList = new LocalStorageUtils().getQueue();
+            // const indexFrom = (this.page - 1) * 20;
+            // const results = watchedList.slice(indexFrom, indexFrom + 20);
+            // const total_pages = Math.ceil(watchedList.length / 20);
+            // return Promise.resolve({ results, total_pages });
         }
     },
 };
