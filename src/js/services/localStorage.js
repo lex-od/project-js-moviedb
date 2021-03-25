@@ -28,8 +28,10 @@ export default class LocalStorageUtils {
                 movieIndex = index;
             }
         });
+
         // === добавление/удаление элемента
         if (movieIndex === -1) {
+            this.removeFromOtherList(listName, movie.id);
             movies.push(movie);
             pushMovies = true;
         } else {
@@ -44,6 +46,21 @@ export default class LocalStorageUtils {
     isMovieInList(listName, id) {
         let movies = this.getMovies(listName);
         return movies.some(movie => movie.id === id);
+    }
+
+    removeFromOtherList(listName, id) {
+        const otherList =
+            listName === this.listNames.watched
+                ? this.listNames.queued
+                : this.listNames.watched;
+
+        if (this.isMovieInList(otherList, id)) {
+            let otherMovies = this.getMovies(otherList);
+            otherMovies = otherMovies.filter(otherMovie => {
+                otherMovie.id !== id;
+            });
+            localStorage.setItem(otherList, JSON.stringify(otherMovies));
+        }
     }
 }
 
@@ -67,9 +84,9 @@ export default class LocalStorageUtils {
 //     }
 
 //     render() {
-//         const moviesStore = localStorageUtils.getMovies();
+//         const moviesStore = localStorageUtils.toggleMoviesInList();
 
-//         // MOVIES.forEach({id, name}) => {
+//         MOVIES.forEach({id, name}) => {
 //         let activeClass = '';
 //         let activeText = '';
 
