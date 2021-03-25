@@ -33,6 +33,8 @@ export default {
         this._bindEvents();
 
         modal.linkParent('.backdrop');
+        pagination.linkParent('.pagination');
+        pagination.render();
     },
     _linkRefs() {
         this._movieListNode = this._parentNode.querySelector('.gallery-list');

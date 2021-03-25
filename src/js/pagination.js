@@ -1,17 +1,16 @@
 // 📌 Имортируем как объект pagination
-
+import paginate from 'handlebars-paginate';
+import * as Handlebars from 'handlebars/runtime';
 import paginationTpl from '../templates/pagination.hbs';
-import after4 from '../templates/after4page.hbs';
 import content from './content';
 
+Handlebars.registerHelper('paginate', paginate);
+
+/* ... */
+
 export default {
-    // pageNext: null,
-    // pageNext2: null,
-    // pagePrev: null,
-    // pagePrev2: null,
-    // pageNext20: null,
     parentNode: null,
-    galleryCont: null,
+    paginationRef: null,
     pagDiv: null,
     incrementBtn: null,
     decrementBtn: null,
@@ -25,54 +24,41 @@ export default {
         this.repos = document.querySelector('.repos-pagination__link');
         this.incrementBtn = document.querySelector('#inc');
         this.decrementBtn = document.querySelector('#dec');
+        this.paginationRef = document.querySelector('.pagination');
     },
 
     bindEvents() {
         this.incrementBtn.addEventListener('click', this.increment.bind(this));
         this.decrementBtn.addEventListener('click', this.decrement.bind(this));
+        // this.repos.classList.add('active-page');
     },
 
     render() {
+        console.log(content.page, content.pageCount);
         this.pagMarkup();
         this.linkRefs();
-        this.toggleChosen();
-        this.increment();
-        this.choosePage();
         this.bindEvents();
     },
 
     pagMarkup() {
-        let page = 1;
-        console.log(this.page);
-
-        let pageNext20 = this.page + 19;
-
-        if (content.page) {
-            this.parentNode.innerHTML = paginationTpl({ pageNext20 });
-        }
-
-        if (page > 4) {
-            let pageNext = this.page + 1;
-            let pageNext2 = this.page + 2;
-            let pagePrev = this.page - 1;
-            let pagePrev2 = this.page - 2;
-            this.parentNode.innerHTML = after4({
-                page,
-                pageNext,
-                pageNext2,
-                pagePrev,
-                pagePrev2,
-                pageNext20,
-            });
-        }
-        content.render();
+        this.parentNode.innerHTML = paginationTpl({
+            pagination: {
+                page: 3,
+                pageCount: 10,
+            },
+        });
     },
 
     increment() {
-        // console.log(content);
+        // console.log(content.page);
         this.page += 1;
         content.page = this.page;
         content.render();
+        // if(content.page >= content.pageCount){
+        //return
+        // }
+        //content.page = content.page + 1
+        //content.render
     },
 
     decrement() {
@@ -83,20 +69,5 @@ export default {
         this.page -= 1;
         content.page = this.page;
         content.render();
-    },
-    choosePage() {
-        content.page = parseInt(this.page);
-        this.pagMarkup();
-    },
-    toggleChosen() {
-        let allPagLinks = document
-            .querySelector('.pagination')
-            .getElementsByTagName('*');
-
-        allPagLinks.forEach(item => {
-            if (parseInt(item.innerHTML) === content.page) {
-                item.classList.add('active-page');
-            }
-        });
     },
 };
