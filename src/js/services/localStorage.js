@@ -56,9 +56,9 @@ export default class LocalStorageUtils {
 
         if (this.isMovieInList(otherList, id)) {
             let otherMovies = this.getMovies(otherList);
-            otherMovies = otherMovies.filter(otherMovie => {
-                otherMovie.id !== id;
-            });
+            otherMovies = otherMovies.filter(
+                otherMovie => otherMovie.id !== id,
+            );
             localStorage.setItem(otherList, JSON.stringify(otherMovies));
         }
     }
