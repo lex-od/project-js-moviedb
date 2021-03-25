@@ -3,7 +3,7 @@ import pagination from './pagination';
 import genresService from './services/genresService';
 import modal from './modal';
 import noImage from '../images/no-img.jpg';
-
+import noResults from '../images/nores3.jpg';
 // 📌 Имортируем как объект content
 
 export default {
@@ -42,7 +42,7 @@ export default {
         // this._image = this._parentNode.querySelector('.gallery-picture');
     },
     _bindEvents() {
-        this._movieListNode.addEventListener(
+        this._movieListNode?.addEventListener(
             'click',
             this.onMovieListClick.bind(this),
         );
@@ -71,11 +71,17 @@ export default {
     },
 
     renderCurrTplMarkup(movieArr) {
+        if (!movieArr.length) {
+            this._parentNode.innerHTML = `<img class="bad-request" src="${noResults}" alt="bad request"  />`;
+            return;
+        }
         movieArr = this.addGenresStr(movieArr);
         //Вариант 1
         // movieArr = movieArr.map(movie => ({ ...movie, imageTpl: noImage }));
+
         //Вариант 2
         movieArr = this.addNoImageIcon(movieArr);
+
         this._parentNode.innerHTML = this._currTpl(movieArr);
     },
 
@@ -96,7 +102,7 @@ export default {
             return;
         }
         const movieCard = event.target.closest('.gallery-item');
-        // console.log(movieCard);
+
         const movieId = movieCard.dataset.source;
 
         modal.render(Number(movieId));
