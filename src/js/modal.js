@@ -1,5 +1,5 @@
 import API from '../js/services/api';
-
+import LocalStorageUtils from './services/localStorage';
 // 📌 Имортируем как объект modal
 
 export default {
@@ -12,6 +12,9 @@ export default {
     _addToWatchedBtnRef: null,
     _addToQueueBtnRef: null,
 
+    localStorageUtils: new LocalStorageUtils(),
+    movieObj: null,
+
     linkParent(selector) {
         this._parentNode = document.querySelector(selector);
     },
@@ -23,27 +26,13 @@ export default {
             const movieObj = await API.getMovieDetails({ movieId });
 
             this.renderCurrTplMarkup(movieObj);
+            this.movieObj = movieObj;
 
             this._linkRefs();
-            this._bindEvents();
+            this._addEventListeners();
         } catch (err) {
             this._incomErrorHandler(err);
         }
-    },
-
-    _bindEvents() {
-        this._closeModalBtnRef.addEventListener(
-            'click',
-            this.clearMarkup.bind(this),
-        );
-        this._addToWatchedBtnRef.addEventListener(
-            'click',
-            this._addToWatched.bind(this),
-        );
-        this._addToQueueBtnRef.addEventListener(
-            'click',
-            this._addToQueue.bind(this),
-        );
     },
 
     loadCurrTemplate() {
@@ -58,7 +47,7 @@ export default {
 
     clearMarkup() {
         this._parentNode.classList.add('modal-is-hidden');
-
+        this._removeEventListeners.bind(this);
         this._parentNode.innerHTML = '';
     },
 
@@ -73,24 +62,64 @@ export default {
         );
     },
 
-    _addToWatched(e) {
+    _addEventListeners() {
+        this._closeModalBtnRef.addEventListener(
+            'click',
+            this.clearMarkup.bind(this),
+        );
+
+        this._addToWatchedBtnRef.addEventListener(
+            'click',
+            this._addToWatched.bind(this),
+        );
+        this._addToQueueBtnRef.addEventListener(
+            'click',
+            this._addToQueue.bind(this),
+        );
+    },
+
+    _removeEventListeners() {
+        this._closeModalBtnRef.removeEventListener(
+            'click',
+            this.clearMarkup.bind(this),
+        );
+        this._addToWatchedBtnRef.removeEventListener(
+            'click',
+            this._addToWatched.bind(this),
+        );
+        this._addToQueueBtnRef.removeEventListener(
+            'click',
+            this._addToQueue.bind(this),
+        );
+    },
+
+    _addToWatched() {
         if (this._addToWatchedBtnRef.textContent === 'Remove from watched') {
             this._addToWatchedBtnRef.textContent = 'Add to watched';
         } else {
             this._addToWatchedBtnRef.textContent = 'Remove from watched';
         }
         this._addToWatchedBtnRef.classList.toggle('modal-info-button-active');
-
+        console.log('watched');
+        this.localStorageUtils.toggleMoviesInList(
+            this.localStorageUtils.listNames.watched,
+            this.movieObj,
+        );
         ////
     },
 
-    _addToQueue(e) {
+    _addToQueue() {
         if (this._addToQueueBtnRef.textContent === 'Remove from queue') {
             this._addToQueueBtnRef.textContent = 'Add to queue';
         } else {
             this._addToQueueBtnRef.textContent = 'Remove from queue';
         }
         this._addToQueueBtnRef.classList.toggle('modal-info-button-active');
+        console.log('queue');
+        this.localStorageUtils.toggleMoviesInList(
+            this.localStorageUtils.listNames.queued,
+            this.movieObj,
+        );
         /////
     },
 
@@ -107,5 +136,3 @@ export default {
 // function pressKey(e) {
 //     if (e.key === 'Escape') return this.closeModal();
 // }
-// addToWatchedBtnRef.addEventListener('click', addToWatched);
-// addToQueueBtnRef.addEventListener('click', addToQueue);
