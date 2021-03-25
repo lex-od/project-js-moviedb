@@ -27,7 +27,6 @@ export default {
     bindEvents() {
         this.incrementBtn.addEventListener('click', this.increment.bind(this));
         this.decrementBtn.addEventListener('click', this.decrement.bind(this));
-        // this.repos.classList.add('active-page');
     },
 
     render() {
@@ -40,7 +39,6 @@ export default {
     pagMarkup() {
         let page = content.page;
         let pageCount = content.pageCount;
-        //  = paginationTpl(curentPage);
 
         this.parentNode.innerHTML = paginationTpl({
             pagination: {

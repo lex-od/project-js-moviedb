@@ -1,24 +1,27 @@
 
 
 
-<div class="pagination pagination-centered"> 
-<div>
+
+<div class="leftDiv">
        <button type="button" class="btnRight" id="dec"></button> 
 </div>
-        {{!-- <span class="repos-pagination__dots">...</span> --}}
-       {{#paginate pagination type="middle" limit="7"}}
-       <li{{#if active}}  class="active"{{/if}}><a class="repos-pagination__link " href="?p={{n}}">{{n}}</a></li>
+ {{!-- {{#paginate pagination type="first"}}
+         <p{{#if active}}  class="active"{{/if}}><a class="repos-pagination__link " href="?p={{n}}">{{n}}</a></p>
+         {{/paginate}}
+        <span class="repos-pagination__dots">...</span> --}}
+       {{#paginate pagination type="middle" limit="5"}}
+       <p class="pag-btn{{#if active}} active{{/if}}"><a class="repos-pagination__link " href="?p={{n}}">{{n}}</a></p>
          {{/paginate}}  
       
         <span class="repos-pagination__dots">...</span>
       
          {{#paginate pagination type="last"}}
-        <a href="?p={{n}}" class="repos-pagination__link">{{n}}</a>
+       <p class="pag-btn"><a href="?p={{n}}" class="repos-pagination__link">{{n}}</a></p> 
         {{/paginate}}
-<div>
+<div class="rightDiv">
      <button type="button" class="btnRight right" id="inc"></button>       
 </div> 
- </div> 
+
  
 
 
@@ -29,6 +32,4 @@
 
 
 
-  {{!-- {{#paginate pagination type="first"}}
-         <li{{#if active}}  class="active"{{/if}}><a class="repos-pagination__link " href="?p={{n}}">{{n}}</a></li>
-         {{/paginate}} --}}
+ 

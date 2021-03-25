@@ -1,5 +1,4 @@
 .pagination {
-    max-width: 300px;
     margin: 0 auto;
     box-sizing: border-box;
 }
@@ -33,20 +32,17 @@
 .repos-pagination__link {
     text-decoration: none;
     color: black;
-    transition: all 0.3s;
+    display: flex;
+    justify-content: space-around;
+    // transition: all 0.3s;
 }
 
-.repos-pagination__link:hover {
-    color: #ff6b08;
-}
-
-.repos-pagination__link,
 .repos-pagination__dots {
-    padding-right: 0.8rem;
+    padding-right: 4px;
 }
 
 .right {
-    margin-right: 10px;
+    // margin-right: 10px;
     transform: rotate(180deg);
     border-radius: 5px;
 }
@@ -55,12 +51,8 @@
     border-radius: 5px;
 }
 .active {
-    padding-top: 6px;
-    padding-left: 13px;
-    margin-right: 16px;
-
-    width: 40px;
-    height: 30px;
+    padding-top: 10px;
+    height: 40px;
     background: url('./images/curentPage.jpg');
     border-radius: 5px;
     color: white;
@@ -79,13 +71,6 @@
     background-size: 20px;
     border-radius: 5px;
     border: none;
-    margin-right: 16px;
-}
-.btnRight.right {
-    margin-right: 10px;
-}
-.btnRight:hover {
-    background-color: #ff6b08;
 }
 
 .pagination .pagination-centered {
@@ -94,7 +79,15 @@
     text-align: center;
     justify-content: center;
     text-decoration: none;
+
+    // justify-content: space-around;
 }
-li {
-    list-style: none;
+.pag-btn {
+    flex: 0 0 40px;
+}
+.rightDiv {
+    margin-left: 16px;
+}
+.leftDiv {
+    margin-right: 16px;
 }
