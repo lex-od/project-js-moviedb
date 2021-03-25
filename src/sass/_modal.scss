@@ -42,10 +42,10 @@
 }
 .close-modal {
     display: block;
-    // background-image: url('./images/close-icon.svg');
+    background-image: url('./images/close-icon.svg');
     background-color: #fff;
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
 
     border: none;
     position: absolute;
@@ -145,15 +145,17 @@
         width: 136px;
     }
 
-    &:hover,
-    &:focus,
-    &:active {
-        color: $secondaryColor;
-        background-color: $primaryAccentColor;
-        border-color: $primaryAccentColor;
+    &:hover {
+        box-shadow: 0 5px 30px 0 $primaryAccentColor;
     }
 
     &:last-child {
         margin-left: 15px;
     }
+}
+
+.modal-info-button-active {
+    color: $secondaryColor;
+    background-color: $primaryAccentColor;
+    border-color: $primaryAccentColor;
 }

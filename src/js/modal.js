@@ -36,6 +36,14 @@ export default {
             'click',
             this.clearMarkup.bind(this),
         );
+        this._addToWatchedBtnRef.addEventListener(
+            'click',
+            this._addToWatched.bind(this),
+        );
+        this._addToQueueBtnRef.addEventListener(
+            'click',
+            this._addToQueue.bind(this),
+        );
     },
 
     loadCurrTemplate() {
@@ -65,21 +73,39 @@ export default {
         );
     },
 
+    _addToWatched(e) {
+        if (this._addToWatchedBtnRef.textContent === 'Remove from watched') {
+            this._addToWatchedBtnRef.textContent = 'Add to watched';
+        } else {
+            this._addToWatchedBtnRef.textContent = 'Remove from watched';
+        }
+        this._addToWatchedBtnRef.classList.toggle('modal-info-button-active');
+
+        ////
+    },
+
+    _addToQueue(e) {
+        if (this._addToQueueBtnRef.textContent === 'Remove from queue') {
+            this._addToQueueBtnRef.textContent = 'Add to queue';
+        } else {
+            this._addToQueueBtnRef.textContent = 'Remove from queue';
+        }
+        this._addToQueueBtnRef.classList.toggle('modal-info-button-active');
+        /////
+    },
+
     _incomErrorHandler(err) {
         console.log(`${err.name}: ${err.message}`);
     },
-
-    // pressKey(e) {
-    //     if (e.key === 'Escape') return this.closeModal();
-    // },
 };
 
+// document.addEventListener('click', see);
+// function see(e) {
+//     console.log(e.target);
+// }
+
+// function pressKey(e) {
+//     if (e.key === 'Escape') return this.closeModal();
+// }
 // addToWatchedBtnRef.addEventListener('click', addToWatched);
 // addToQueueBtnRef.addEventListener('click', addToQueue);
-
-// function openModal() {
-//     renderModal(+e.target.dataset.id);
-//     document.addEventListener('keydown', pressKey);
-// closeModalBtnRef.addEventListener('click', closeModal);
-// modalRef.addEventListener('click', closeModal);
-// }
