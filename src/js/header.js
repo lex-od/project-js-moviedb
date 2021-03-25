@@ -85,18 +85,25 @@ export default {
     },
 
     onInput(e) {
-        if (!e.target.value.trim()) {
-            return;
+        // Переопределяем функцию получения данных в объекте content
+        if (e.target.value.trim()) {
+            // Если что-то введено - запрашиваем поиск
+            content.getIncomingData = getIncDataOverride;
+        } else {
+            // Если пустая строка - отображаем популярные, как изначально
+            content.getIncomingData = getIncDataOriginal;
         }
 
-        // Переопределяем функцию получения данных в объекте content
-        content.getIncomingData = getIncDataOverride;
         content.page = 1;
         content.render();
 
-        // Новая функция: вызывается в объекте content при рендере
+        // Заменяющая функция (поиск)
         function getIncDataOverride() {
             return API.searchMovies({ query: e.target.value, page: this.page });
+        }
+        // Первоначальная функция (попуярные)
+        function getIncDataOriginal() {
+            return API.getTrending({ page: this.page });
         }
     },
 };
