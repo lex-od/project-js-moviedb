@@ -120,5 +120,26 @@ export default {
         if (e.target.tagName !== 'BUTTON') {
             return;
         }
+
+        switch (e.target.dataset.action) {
+            case 'watched':
+                content.getIncomingData = getIncDataOvrWatched;
+                break;
+            case 'queue':
+                content.getIncomingData = getIncDataOvrQueue;
+                break;
+        }
+
+        content.page = 1;
+        content.render();
+
+        function getIncDataOvrWatched() {
+            // return API.getTrending({ page: this.page });
+            console.log('watched');
+        }
+        function getIncDataOvrQueue() {
+            // return API.getTrending({ page: this.page });
+            console.log('queue');
+        }
     },
 };
