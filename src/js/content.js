@@ -11,6 +11,7 @@ export default {
     _tplName: 'gallery',
     _currTpl: null,
     page: 1,
+    pageCount: 0,
 
     linkParent(selector) {
         this._parentNode = document.querySelector(selector);
@@ -22,7 +23,7 @@ export default {
 
             const incomData = await this.getIncomingData();
 
-            incomData.results = this.addGenresStr(incomData.results);
+            this.pageCount = incomData.total_pages || 0;
 
             this.renderCurrTplMarkup(incomData.results);
         } catch (err) {
@@ -58,6 +59,8 @@ export default {
     },
 
     renderCurrTplMarkup(movieArr) {
+        movieArr = this.addGenresStr(movieArr);
+
         this._parentNode.innerHTML = this._currTpl(movieArr);
     },
 
@@ -81,6 +84,6 @@ export default {
         // console.log(movieCard);
         const movieId = movieCard.dataset.source;
 
-        modal.show(movieId);
+        modal.render(Number(movieId));
     },
 };

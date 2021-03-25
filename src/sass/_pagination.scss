@@ -1,13 +1,12 @@
-.pagination{
+.pagination {
     max-width: 374px;
     margin: 0 auto;
     box-sizing: border-box;
 }
 
-
 #pagDiv {
- color: #000;
- max-width: 374px;
+    color: #000;
+    max-width: 374px;
     box-sizing: border-box;
     display: flex;
     padding-top: 40px;
@@ -38,7 +37,7 @@
 }
 
 .repos-pagination__link:hover {
-    color: #FF6B08;
+    color: #ff6b08;
 }
 
 .repos-pagination__link,
@@ -56,7 +55,6 @@
     border-radius: 5px;
 }
 .active-page {
-    display: block;
     padding-top: 10px;
     padding-left: 12px;
     margin-right: 16px;
@@ -81,10 +79,9 @@
     border: none;
     margin-right: 16px;
 }
-.btnRight.right{
+.btnRight.right {
     margin-right: 10px;
-    
 }
-.btnRight:hover{
-   background-color:  #FF6B08;
+.btnRight:hover {
+    background-color: #ff6b08;
 }
