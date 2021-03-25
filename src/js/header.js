@@ -11,12 +11,13 @@ export default {
     _navPagesRef: null,
     _inputRef: null,
     _libWrapperRef: null,
-
+    _messageHeader: null,
     _tplName: params.TPL_NAMES.home,
     _currTpl: null,
 
     linkParent(selector) {
         this._parentNode = document.querySelector(selector);
+        this._messageHeader = this._parentNode.querySelector('.message-header');
     },
 
     render() {
@@ -102,6 +103,8 @@ export default {
             // Если пустая строка - отображаем популярные, как изначально
             content.getIncomingData = getIncDataOriginal;
         }
+        // убираем сообщение
+        this._messageHeader.classList.add('is-hidden');
 
         content.page = 1;
         content.render();
@@ -114,6 +117,11 @@ export default {
         function getIncDataOriginal() {
             return API.getTrending({ page: this.page });
         }
+    },
+
+    // убираем сообщение
+    showError() {
+        this._messageHeader.classList.remove('is-hidden');
     },
 
     onLibraryBtnsClick(e) {
