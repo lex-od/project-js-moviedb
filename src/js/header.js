@@ -91,6 +91,7 @@ export default {
 
         // Переопределяем функцию получения данных в объекте content
         content.getIncomingData = getIncDataOverride;
+        content.page = 1;
         content.render();
 
         // Новая функция: вызывается в объекте content при рендере
