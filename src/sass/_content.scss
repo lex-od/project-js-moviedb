@@ -1,17 +1,17 @@
 .gallery-content {
     padding-top: 20px;
+
     // padding-bottom: 40px;
 
     @include for-size(tablet) {
         padding-top: 60px;
+
         // padding-bottom: 50px;
     }
 }
 .gallery-list {
     @include for-size(tablet) {
         display: flex;
-
-        justify-content: center;
         flex-wrap: wrap;
         margin-top: -15px;
         margin-left: -15px;
@@ -26,12 +26,15 @@
     margin-bottom: 20px;
     @include for-size(tablet) {
         align-self: flex-start;
-        flex-basis: calc(100% / 2- 15px);
-        margin-top: 15px;
+        // flex-basis: calc(100% / 2- 15px);
+
+        flex-basis: calc((100% - 2 * 30px) / 2);
         margin-left: 15px;
+        margin-top: 15px;
     }
     @include for-size(desktop) {
-        flex-basis: calc(100% / 4- 15px);
+        // flex-basis: calc(100% / 4- 15px);
+        flex-basis: calc((100% - 4 * 30px) / 4);
     }
     &:hover,
     :focus {
@@ -43,12 +46,11 @@
 .image-wrapper {
     overflow: hidden;
 
-    // width: 280px;
     height: 402px;
 
     @include for-size(tablet) {
-        width: 294px;
-        height: 398px;
+        width: 347px;
+        height: 440px;
     }
     @include for-size(desktop) {
         width: 280px;
