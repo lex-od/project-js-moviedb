@@ -2,12 +2,24 @@
 {{#each this}}
 <li class="gallery-item" data-source={{id}}>
     <div class="image-wrapper">
-    <img src="https://image.tmdb.org/t/p/w300{{poster_path}}" alt="{{title}}" class="gallery-picture" data-id="{{id}}">
+        
+         {{!-- //Вариант 1 --}}
+    {{!-- {{#if poster_path }}
+       <img src="https://image.tmdb.org/t/p/w300{{poster_path}}" alt="{{title}}" class="gallery-picture" data-id="{{id}}">
+    {{else}}
+     
+    <img src="{{imageTpl}}" alt="content photo" class="gallery-picture" data-id="{{id}}">
+     {{/if}} --}}
+     {{!-- Вариант 2 --}}
+<img src="{{poster_path}}" alt="{{title}}"  />
 </div>
 <div class="card-content">
     <p class="gallery-title to-uppercase">{{title}}</p>
-
-    <p class="gallery-title accent-color">{{genres_str}}<span> | </span>{{release_date}}
+    
+     {{#if genres_str}}
+    <p class="gallery-title accent-color">{{genres_str}}<span> 
+        {{/if}}
+        </span><span class="gallery-title accent-color"> | {{release_date}}</span> 
     
         {{#if vote_average}}
         <span class="vote-average">{{vote_average}}</span>
@@ -17,3 +29,4 @@
 </li>
 {{/each}}
 </ul>
+
