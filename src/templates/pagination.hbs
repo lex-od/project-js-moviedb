@@ -1,39 +1,34 @@
-{{!-- <div class="pagination pagination-centered">
-  <ul>
-    {{#paginate pagination  type="first"}}
-      <li {{#if disabled}}class="disabled"{{/if}}><a href="?p={{n}}">First</a></li>
-    {{/paginate}}
-    {{#paginate pagination type="previous"}}
-      <li {{#if disabled}}class="disabled"{{/if}}><a href="?p={{n}}">Prev</a></li>
-    {{/paginate}}
-    {{#paginate pagination type="middle" limit="7"}}
-      <li {{#if active}}class="active"{{/if}}><a href="?p={{n}}">{{n}}</a></li>
-    {{/paginate}}
-    {{#paginate pagination type="next"}}
-      <li {{#if disabled}}class="disabled"{{/if}}><a href="?p={{n}}">Next</a></li>
-    {{/paginate}}
-    {{#paginate pagination type="last"}}
-      <li {{#if disabled}} class="disabled"{{/if}}><a href="?p={{n}}">Last</a></li>
-    {{/paginate}}
-  </ul>
-</div> --}}
 
 
 
-<div class="pagination pagination-centered">
+<div class="pagination pagination-centered"> 
 <div>
-      <button type="button" class="btnRight" id="dec"></button> 
+       <button type="button" class="btnRight" id="dec"></button> 
 </div>
-        <a href="#" class="repos-pagination__link">1</a>
-        <span class="repos-pagination__dots">...</span>      
-        <a href="#" class="repos-pagination__link" id="#pagPrev2">{{pagePrev2}}</a>
-        <a href="#" class="repos-pagination__link" id="#pagPrev2">{{pagePrev}}</a>
-        <a href="#" class="repos-pagination__link" id="#pagPrev">{{page}}</a>
-        <a href="#" class="repos-pagination__link" id="#pagNext">{{pageNext}}</a>
-        <a href="#" class="repos-pagination__link" id="#pagNext2">{{pageNext2}}</a>
+        {{!-- <span class="repos-pagination__dots">...</span> --}}
+       {{#paginate pagination type="middle" limit="7"}}
+       <li{{#if active}}  class="active"{{/if}}><a class="repos-pagination__link " href="?p={{n}}">{{n}}</a></li>
+         {{/paginate}}  
+      
         <span class="repos-pagination__dots">...</span>
-        <a href="#" class="repos-pagination__link">{{pageNext20}}</a>
+      
+         {{#paginate pagination type="last"}}
+        <a href="?p={{n}}" class="repos-pagination__link">{{n}}</a>
+        {{/paginate}}
 <div>
      <button type="button" class="btnRight right" id="inc"></button>       
-</div>
-</div>
+</div> 
+ </div> 
+ 
+
+
+
+
+
+
+
+
+
+  {{!-- {{#paginate pagination type="first"}}
+         <li{{#if active}}  class="active"{{/if}}><a class="repos-pagination__link " href="?p={{n}}">{{n}}</a></li>
+         {{/paginate}} --}}

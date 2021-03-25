@@ -5,9 +5,6 @@ import paginationTpl from '../templates/pagination.hbs';
 import content from './content';
 
 Handlebars.registerHelper('paginate', paginate);
-
-/* ... */
-
 export default {
     parentNode: null,
     paginationRef: null,
@@ -41,23 +38,27 @@ export default {
     },
 
     pagMarkup() {
+        let page = content.page;
+        let pageCount = content.pageCount;
+        //  = paginationTpl(curentPage);
+
         this.parentNode.innerHTML = paginationTpl({
             pagination: {
-                page: 3,
-                pageCount: 10,
+                page,
+                pageCount,
             },
         });
     },
 
     increment() {
+        if (content.page >= content.pageCount) {
+            return;
+        }
         this.page += 1;
         content.page = this.page;
         content.render();
-        // if(content.page >= content.pageCount){
-        //return
-        // }
-        //content.page = content.page + 1
-        //content.render
+        // content.page = content.page + 1;
+        // content.render;
     },
 
     decrement() {

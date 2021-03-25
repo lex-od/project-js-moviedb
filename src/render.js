@@ -1,7 +1,6 @@
 import header from './js/header';
 import content from './js/content';
 import footer from './js/footer';
-
 import genresService from './js/services/genresService';
 
 export default async function () {
