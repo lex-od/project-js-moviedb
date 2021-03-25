@@ -17,7 +17,6 @@ export default {
 
     linkParent(selector) {
         this._parentNode = document.querySelector(selector);
-        this._messageHeader = this._parentNode.querySelector('.message-header');
     },
 
     render() {
@@ -48,6 +47,7 @@ export default {
 
     _linkRefs() {
         this._navPagesRef = this._parentNode.querySelector('#nav-pages');
+        this._messageHeader = this._parentNode.querySelector('.message-header');
 
         switch (this._tplName) {
             case params.TPL_NAMES.home:
