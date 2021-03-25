@@ -1,7 +1,6 @@
 
 <div class="modal-window">
       <button class="close-modal" id="close-modal" type="button">
-         
      </button>
      {{#if poster_path}}
     <img
@@ -43,7 +42,7 @@
             <li class="modal-info-list-item">
                 {{popularity}}
             </li>
-            <li class="modal-info-list-item">
+            <li class="modal-info-list-item to-uppercase">
                 {{original_title}}             
             </li>
             <li class="modal-info-list-item">
@@ -55,14 +54,14 @@
             </li>
         </ul>
         </div>
-        <h3 class="modal-info-about">About</h3>
+        <h3 class="modal-info-about to-uppercase">About</h3>
         <p class="modal-info-description">{{overview}}</p>
         <div class="modal-info-buttons">
         {{!-- watched button  --}}
             {{#if movieInWatched}}
             <button
                 type="button"
-                class="modal-info-button modal-info-button-active"
+                class="modal-info-button modal-info-button-active to-uppercase"
                 id="js-watched-button"
             >
                 Remove from watched
@@ -71,7 +70,7 @@
             {{else}}
             <button
                 type="button"
-                class="modal-info-button"
+                class="modal-info-button to-uppercase"
                 id="js-watched-button"
             >
                 Add to watched
@@ -81,7 +80,7 @@
             {{#if movieInQueue}}
               <button
                 type="button"
-                class="modal-info-button modal-info-button-active"
+                class="modal-info-button modal-info-button-active to-uppercase"
                 id="js-queue-button"
             >
                 Remove from queue
@@ -89,7 +88,7 @@
             {{else}}
                <button
                 type="button"
-                class="modal-info-button"
+                class="modal-info-button to-uppercase"
                 id="js-queue-button"
             >
                 Add to queue
