@@ -3,21 +3,34 @@
       <button class="close-modal" id="close-modal" type="button">
          
      </button>
+     {{#if poster_path}}
     <img
         class="modal-image"
         src="https://image.tmdb.org/t/p/w500{{poster_path}}"
         alt="{{title}}"
     />
+    {{else}}
+       <img
+        class="modal-image"
+        src="https://png.pngtree.com/thumb_back/fw800/back_our/20190622/ourmid/pngtree-film-and-television-festival-grey-atmospheric-movie-element-poster-image_215419.jpg"
+        alt="no-image"
+    />
+    {{/if}}
     <div class="modal-info">
         <h2 class="modal-movie-title">{{title}}</h2>
         <div class="modal-info-lists">
         <ul class="modal-info-list left">
-            <li class="modal-info-list-item">Vote / Votes</li>
+            {{#if vote_count}}
+            <li class="modal-info-list-item">Vote/Votes</li>
+            {{/if}}
             <li class="modal-info-list-item">Popularity</li>
             <li class="modal-info-list-item">Original Title</li>
+            {{#if genres}}
             <li class="modal-info-list-item">Genre</li>
+            {{/if}}
         </ul>
          <ul class="modal-info-list">
+                {{#if vote_count}}
             <li class="modal-info-list-item">
                 <span class="modal-info-average">
                      {{vote_average}} 
@@ -26,6 +39,7 @@
                     {{vote_count}}
                 </span>
             </li>
+            {{/if}}
             <li class="modal-info-list-item">
                 {{popularity}}
             </li>
@@ -33,9 +47,11 @@
                 {{original_title}}             
             </li>
             <li class="modal-info-list-item">
+                {{#if genres}}
                 {{#each genres}}
-                <span class="modal-info-genres-text-list-data"> {{this}} </span>
+                    <span class="modal-info-genres-text-list-data"> {{this.name}} </span>
                 {{/each}}
+                {{/if}}
             </li>
         </ul>
         </div>
