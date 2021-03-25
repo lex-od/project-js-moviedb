@@ -9,6 +9,7 @@ export default {
     _tplName: 'base',
     _currTpl: null,
 
+    _modalBackdropRef: null,
     _closeModalBtnRef: null,
     _addToWatchedBtnRef: null,
     _addToQueueBtnRef: null,
@@ -50,21 +51,28 @@ export default {
     },
 
     renderCurrTplMarkup(movieObj) {
+
         this._parentNode.innerHTML = this._currTpl({
             ...movieObj,
             imgTpl: noImg,
         });
 
+
+      
+
         this._parentNode.classList.remove('modal-is-hidden');
+        this._parentNode.classList.add('modal-is-open');
     },
 
     clearMarkup() {
+        this._parentNode.classList.remove('modal-is-open');
         this._parentNode.classList.add('modal-is-hidden');
         this._removeEventListeners.bind(this);
-        this._parentNode.innerHTML = '';
+        // this._parentNode.innerHTML = '';
     },
 
     _linkRefs() {
+        this._modalBackdropRef = document.querySelector('.backdrop');
         this._closeModalBtnRef = this._parentNode.querySelector('#close-modal');
 
         this._addToWatchedBtnRef = this._parentNode.querySelector(
@@ -76,11 +84,12 @@ export default {
     },
 
     _addEventListeners() {
+        document.addEventListener('click', this._closeModalOnClick.bind(this));
+        document.addEventListener('keydown', this._closeModalOnKey.bind(this));
         this._closeModalBtnRef.addEventListener(
             'click',
             this.clearMarkup.bind(this),
         );
-
         this._addToWatchedBtnRef.addEventListener(
             'click',
             this._addToWatched.bind(this),
@@ -92,6 +101,14 @@ export default {
     },
 
     _removeEventListeners() {
+        document.removeEventListener(
+            'click',
+            this._closeModalOnClick.bind(this),
+        );
+        document.removeEventListener(
+            'keydown',
+            this._closeModalOnKey.bind(this),
+        );
         this._closeModalBtnRef.removeEventListener(
             'click',
             this.clearMarkup.bind(this),
@@ -106,25 +123,38 @@ export default {
         );
     },
 
+    _closeModalOnClick(e) {
+        if (e.target === this._modalBackdropRef) {
+            this.clearMarkup();
+        }
+    },
+
+    _closeModalOnKey(e) {
+        if (e.key === 'Escape') {
+            this.clearMarkup();
+        }
+    },
+
     _addToWatched() {
         if (
             this._addToWatchedBtnRef.classList.contains(
                 'modal-info-button-active',
             )
         ) {
-            this._addToWatchedBtnRef.textContent = 'Add to watched';
+            this._addToWatchedBtnRef.textContent = 'ADD TO WATCHED';
             this._addToWatchedBtnRef.classList.remove(
                 'modal-info-button-active',
             );
         } else {
-            this._addToWatchedBtnRef.textContent = 'Remove from watched';
+            this._addToWatchedBtnRef.textContent = 'REMOVE FROM WATCHED';
             this._addToWatchedBtnRef.classList.add('modal-info-button-active');
+            this._addToQueueBtnRef.classList.remove('modal-info-button-active');
+            this._addToQueueBtnRef.textContent = 'ADD TO QUEUE';
         }
         this.localStorageUtils.toggleMoviesInList(
             this.localStorageUtils.listNames.watched,
             this.movieObj,
         );
-        ////
     },
 
     _addToQueue() {
@@ -133,18 +163,21 @@ export default {
                 'modal-info-button-active',
             )
         ) {
-            this._addToQueueBtnRef.textContent = 'Add to queue';
+            this._addToQueueBtnRef.textContent = 'ADD TO QUEUE';
             this._addToQueueBtnRef.classList.remove('modal-info-button-active');
         } else {
-            this._addToQueueBtnRef.textContent = 'Remove from queue';
+            this._addToQueueBtnRef.textContent = 'REMOVE FROM QUEUE';
             this._addToQueueBtnRef.classList.add('modal-info-button-active');
+            this._addToWatchedBtnRef.classList.remove(
+                'modal-info-button-active',
+            );
+            this._addToWatchedBtnRef.textContent = 'ADD TO WATCHED';
         }
 
         this.localStorageUtils.toggleMoviesInList(
             this.localStorageUtils.listNames.queued,
             this.movieObj,
         );
-        /////
     },
 
     _incomErrorHandler(err) {
@@ -152,11 +185,4 @@ export default {
     },
 };
 // console.log(Math.floor(100000 + Math.random() * 900000));
-// document.addEventListener('click', see);
-// function see(e) {
-//     console.log(e.target);
-// }
 
-// function pressKey(e) {
-//     if (e.key === 'Escape') return this.closeModal();
-// }

@@ -4,17 +4,23 @@
     pointer-events: none;
 }
 
+.modal-is-open {
+    opacity: 1;
+}
+
 .backdrop {
+    transition: all 500ms linear;
+    overflow: scroll;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.2);
-    transition: all 500ms linear;
-    overflow: scroll;
 }
+
 .modal-window {
+    transition: all 500ms linear;
     width: 280px;
     position: relative;
     margin: 10px auto;
@@ -23,6 +29,7 @@
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
         0px 2px 1px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
+    font-family: inherit;
     font-weight: 500;
 
     @include for-size(tablet) {
@@ -73,6 +80,18 @@
     }
 }
 
+.modal-movie-title {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.15;
+
+    @include for-size(desktop) {
+        font-size: 30px;
+        line-height: 1.16;
+    }
+}
+
 .modal-info {
     @include for-size(tablet) {
         margin-left: 32px;
@@ -84,10 +103,16 @@
 
 .modal-info-about {
     margin: 10px 0px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
 }
 
 .modal-info-lists {
     display: flex;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
 }
 
 .modal-info-list {
@@ -126,6 +151,9 @@
 
 .modal-info-description {
     margin: 10px 0px 20px 0px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.67;
 }
 
 .modal-info-buttons {
@@ -133,6 +161,10 @@
 }
 
 .modal-info-button {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.4;
+
     height: 44px;
     border-radius: 5px;
     width: calc(100% / 2 - 7px);

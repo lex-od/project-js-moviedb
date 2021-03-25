@@ -4,11 +4,13 @@ import genresService from './services/genresService';
 import modal from './modal';
 import noImage from '../images/no-img.jpg';
 import noResults from '../images/nores3.jpg';
+import header from './header';
 // 📌 Имортируем как объект content
 
 export default {
     _parentNode: null,
     _movieListNode: null,
+    _goTopBtn: null,
     _tplName: 'gallery',
     _currTpl: null,
     page: 1,
@@ -23,6 +25,11 @@ export default {
             this.loadCurrTemplate();
 
             const incomData = await this.getIncomingData();
+
+            // показываем ошибку при пустом массиве
+            if (!incomData.results.length) {
+                header.showError();
+            }
 
             this.pageCount = incomData.total_pages || 0;
 
@@ -40,12 +47,19 @@ export default {
     _linkRefs() {
         this._movieListNode = this._parentNode.querySelector('.gallery-list');
         // this._image = this._parentNode.querySelector('.gallery-picture');
+
+        // добавление кнопки scrollUp
+        this._goTopBtn = document.querySelector('.back_to_top');
     },
     _bindEvents() {
         this._movieListNode?.addEventListener(
             'click',
             this.onMovieListClick.bind(this),
         );
+
+        // добавление кнопки scrollUp
+        window.addEventListener('scroll', this.trackScroll.bind(this));
+        this._goTopBtn.addEventListener('click', this.backToTop.bind(this));
     },
 
     getIncomingData() {
@@ -106,5 +120,23 @@ export default {
         const movieId = movieCard.dataset.source;
 
         modal.render(Number(movieId));
+    },
+
+    // добавление кнопки scrollUp
+    trackScroll() {
+        const scrolled = window.pageYOffset;
+        const coords = document.documentElement.clientHeight;
+        if (scrolled > coords) {
+            this._goTopBtn.classList.add('back_to_top-show');
+        }
+    },
+
+    backToTop() {
+        if (window.pageYOffset > 0) {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
+        }
     },
 };

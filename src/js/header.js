@@ -11,7 +11,7 @@ export default {
     _navPagesRef: null,
     _inputRef: null,
     _libWrapperRef: null,
-
+    _messageHeader: null,
     _tplName: params.TPL_NAMES.home,
     _currTpl: null,
 
@@ -47,6 +47,7 @@ export default {
 
     _linkRefs() {
         this._navPagesRef = this._parentNode.querySelector('#nav-pages');
+        this._messageHeader = this._parentNode.querySelector('.message-header');
 
         switch (this._tplName) {
             case params.TPL_NAMES.home:
@@ -102,6 +103,8 @@ export default {
             // Если пустая строка - отображаем популярные, как изначально
             content.getIncomingData = getIncDataOriginal;
         }
+        // убираем сообщение
+        this._messageHeader.classList.add('is-hidden');
 
         content.page = 1;
         content.render();
@@ -114,6 +117,11 @@ export default {
         function getIncDataOriginal() {
             return API.getTrending({ page: this.page });
         }
+    },
+
+    // убираем сообщение
+    showError() {
+        this._messageHeader.classList.remove('is-hidden');
     },
 
     onLibraryBtnsClick(e) {
