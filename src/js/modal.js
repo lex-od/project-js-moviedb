@@ -24,7 +24,16 @@ export default {
             this.loadCurrTemplate();
 
             const movieObj = await API.getMovieDetails({ movieId });
-
+            // ===============================
+            movieObj.movieInWatched = this.localStorageUtils.isMovieInList(
+                this.localStorageUtils.listNames.watched,
+                movieObj.id,
+            );
+            movieObj.movieInQueue = this.localStorageUtils.isMovieInList(
+                this.localStorageUtils.listNames.queued,
+                movieObj.id,
+            );
+            // =============================
             this.renderCurrTplMarkup(movieObj);
             this.movieObj = movieObj;
 
@@ -94,13 +103,19 @@ export default {
     },
 
     _addToWatched() {
-        if (this._addToWatchedBtnRef.textContent === 'Remove from watched') {
+        if (
+            this._addToWatchedBtnRef.classList.contains(
+                'modal-info-button-active',
+            )
+        ) {
             this._addToWatchedBtnRef.textContent = 'Add to watched';
+            this._addToWatchedBtnRef.classList.remove(
+                'modal-info-button-active',
+            );
         } else {
             this._addToWatchedBtnRef.textContent = 'Remove from watched';
+            this._addToWatchedBtnRef.classList.add('modal-info-button-active');
         }
-        this._addToWatchedBtnRef.classList.toggle('modal-info-button-active');
-        console.log('watched');
         this.localStorageUtils.toggleMoviesInList(
             this.localStorageUtils.listNames.watched,
             this.movieObj,
@@ -109,13 +124,18 @@ export default {
     },
 
     _addToQueue() {
-        if (this._addToQueueBtnRef.textContent === 'Remove from queue') {
+        if (
+            this._addToQueueBtnRef.classList.contains(
+                'modal-info-button-active',
+            )
+        ) {
             this._addToQueueBtnRef.textContent = 'Add to queue';
+            this._addToQueueBtnRef.classList.remove('modal-info-button-active');
         } else {
             this._addToQueueBtnRef.textContent = 'Remove from queue';
+            this._addToQueueBtnRef.classList.add('modal-info-button-active');
         }
-        this._addToQueueBtnRef.classList.toggle('modal-info-button-active');
-        console.log('queue');
+
         this.localStorageUtils.toggleMoviesInList(
             this.localStorageUtils.listNames.queued,
             this.movieObj,
