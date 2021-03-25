@@ -2,6 +2,7 @@ import content from './content';
 import params from '../json/headerParams.json';
 import debounce from 'lodash.debounce';
 import API from './services/api';
+import LocalStorageUtils from './services/localStorage';
 
 // 📌 Имортируем как объект header
 
@@ -9,6 +10,7 @@ export default {
     _parentNode: null,
     _navPagesRef: null,
     _inputRef: null,
+    _libWrapperRef: null,
 
     _tplName: params.TPL_NAMES.home,
     _currTpl: null,
@@ -53,6 +55,9 @@ export default {
                 );
                 break;
             case params.TPL_NAMES.library:
+                this._libWrapperRef = this._parentNode.querySelector(
+                    '#library-wrapper',
+                );
                 break;
         }
     },
@@ -71,6 +76,10 @@ export default {
                 );
                 break;
             case params.TPL_NAMES.library:
+                this._libWrapperRef.addEventListener(
+                    'click',
+                    this.onLibraryBtnsClick.bind(this),
+                );
                 break;
         }
     },
@@ -104,6 +113,12 @@ export default {
         // Первоначальная функция (попуярные)
         function getIncDataOriginal() {
             return API.getTrending({ page: this.page });
+        }
+    },
+
+    onLibraryBtnsClick(e) {
+        if (e.target.tagName !== 'BUTTON') {
+            return;
         }
     },
 };
