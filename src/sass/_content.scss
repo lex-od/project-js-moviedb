@@ -10,7 +10,7 @@
 .gallery-list {
     @include for-size(tablet) {
         display: flex;
-       
+
         justify-content: center;
         flex-wrap: wrap;
         margin-top: -15px;
@@ -19,7 +19,6 @@
 }
 
 .gallery-item {
-        
     overflow: hidden;
     cursor: pointer;
     border-radius: 5px;
@@ -99,3 +98,6 @@
     background-color: $secondaryAccentColor;
     margin-left: 3px;
 }
+// .error-picture {
+//     background-image: url(../images/no-img.jpg);
+// }

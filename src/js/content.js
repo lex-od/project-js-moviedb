@@ -2,6 +2,7 @@ import API from './services/api';
 import pagination from './pagination';
 import genresService from './services/genresService';
 import modal from './modal';
+import noImage from '../images/no-img.jpg';
 
 // 📌 Имортируем как объект content
 
@@ -58,9 +59,21 @@ export default {
         });
     },
 
+    addNoImageIcon(movieArr) {
+        return movieArr.map(movie => ({
+            ...movie,
+            poster_path: movie.poster_path
+                ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+                : noImage,
+        }));
+    },
+
     renderCurrTplMarkup(movieArr) {
         movieArr = this.addGenresStr(movieArr);
-
+        //Вариант 1
+        // movieArr = movieArr.map(movie => ({ ...movie, imageTpl: noImage }));
+        //Вариант 2
+        movieArr = this.addNoImageIcon(movieArr);
         this._parentNode.innerHTML = this._currTpl(movieArr);
     },
 
