@@ -50,7 +50,6 @@ export default {
     },
 
     increment() {
-        // console.log(content.page);
         this.page += 1;
         content.page = this.page;
         content.render();
