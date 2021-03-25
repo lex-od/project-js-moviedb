@@ -31,7 +31,7 @@ export default {
         }
     },
 
-    loadCurrTemplate(tplName) {
+    loadCurrTemplate() {
         this._currTpl = require('../templates/' +
             this._tplName +
             '.header.hbs');
@@ -134,18 +134,24 @@ export default {
         content.render();
 
         function getIncDataOvrWatched() {
-            // const watchedList = new LocalStorageUtils().getWatched();
-            // const indexFrom = (this.page - 1) * 20;
-            // const results = watchedList.slice(indexFrom, indexFrom + 20);
-            // const total_pages = Math.ceil(watchedList.length / 20);
-            // return Promise.resolve({ results, total_pages });
+            const lsUtils = new LocalStorageUtils();
+            const watchedList = lsUtils.getMovies(lsUtils.listNames.watched);
+
+            const indexFrom = (this.page - 1) * 20;
+            const results = watchedList.slice(indexFrom, indexFrom + 20);
+            const total_pages = Math.ceil(watchedList.length / 20);
+
+            return Promise.resolve({ results, total_pages });
         }
         function getIncDataOvrQueue() {
-            // const watchedList = new LocalStorageUtils().getQueue();
-            // const indexFrom = (this.page - 1) * 20;
-            // const results = watchedList.slice(indexFrom, indexFrom + 20);
-            // const total_pages = Math.ceil(watchedList.length / 20);
-            // return Promise.resolve({ results, total_pages });
+            const lsUtils = new LocalStorageUtils();
+            const watchedList = lsUtils.getMovies(lsUtils.listNames.queued);
+
+            const indexFrom = (this.page - 1) * 20;
+            const results = watchedList.slice(indexFrom, indexFrom + 20);
+            const total_pages = Math.ceil(watchedList.length / 20);
+
+            return Promise.resolve({ results, total_pages });
         }
     },
 };
