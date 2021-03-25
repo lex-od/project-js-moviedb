@@ -1,15 +1,35 @@
-<div>
-      <button type="button" class="btnRight" id="dec"></button>       
+
+
+
+
+<div class="leftDiv">
+       <button type="button" class="btnRight" id="dec"></button> 
 </div>
-       <a href="#" class="repos-pagination__link">1</a>
-        <span class="repos-pagination__dots">...</span>      
-        <a href="#" class="repos-pagination__link" id="#pagPrev2">2</a>
-        <a href="#" class="repos-pagination__link" id="#pagPrev2">3</a>
-        <a href="#" class="repos-pagination__link" id="#pagPrev">4</a>
-        <a href="#" class="repos-pagination__link" id="#pagNext">5</a>
-        <a href="#" class="repos-pagination__link" id="#pagNext2">6</a>
+ {{!-- {{#paginate pagination type="first"}}
+         <p{{#if active}}  class="active"{{/if}}><a class="repos-pagination__link " href="?p={{n}}">{{n}}</a></p>
+         {{/paginate}}
+        <span class="repos-pagination__dots">...</span> --}}
+       {{#paginate pagination type="middle" limit="5"}}
+       <p class="pag-btn{{#if active}} active{{/if}}"><a class="repos-pagination__link " href="?p={{n}}">{{n}}</a></p>
+         {{/paginate}}  
+      
         <span class="repos-pagination__dots">...</span>
-        <a href="#" class="repos-pagination__link">{{pageNext20}}</a>
-<div>
+      
+         {{#paginate pagination type="last"}}
+       <p class="pag-btn"><a href="?p={{n}}" class="repos-pagination__link">{{n}}</a></p> 
+        {{/paginate}}
+<div class="rightDiv">
      <button type="button" class="btnRight right" id="inc"></button>       
-</div>
+</div> 
+
+ 
+
+
+
+
+
+
+
+
+
+ 
