@@ -85,12 +85,17 @@ export default {
     },
 
     onInput(e) {
-        console.log(e.target.value);
+        if (!e.target.value.trim()) {
+            return;
+        }
 
-        // Пример вызова отрисовки галереи по событию
-        // content.initData = async () => {
-        //     return API.searchMovies();
-        // };
-        // content.render();
+        // Переопределяем функцию получения данных в объекте content
+        content.getIncomingData = getIncDataOverride;
+        content.render();
+
+        // Новая функция: вызывается в объекте content при рендере
+        function getIncDataOverride() {
+            return API.searchMovies({ query: e.target.value, page: this.page });
+        }
     },
 };
