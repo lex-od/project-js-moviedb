@@ -1,8 +1,3 @@
-// ==== синхронизация ЛС в нескольких окнах ==================
-// window.addEventListener('storage', event => {
-//     console.log(event);
-// });
-// ===================================
 export default class LocalStorageUtils {
     constructor() {
         this.listNames = {
@@ -20,32 +15,28 @@ export default class LocalStorageUtils {
     }
 
     toggleMoviesInList(listName, movie) {
-        let movies = this.getMovies(listName);
-        let pushMovies = false; //если false - удалили, если true - добавили
-        let movieIndex = -1;
-        movies.forEach((currentMovie, index) => {
-            if (currentMovie.id === movie.id) {
-                movieIndex = index;
-            }
-        });
+        let savedMovies = this.getMovies(listName);
+        // let pushMovies = false; //если false - удалили, если true - добавили
+        const movieInList = this.isMovieInList(listName, movie.id);
 
         // === добавление/удаление элемента
-        if (movieIndex === -1) {
-            this.removeFromOtherList(listName, movie.id);
-            movies.push(movie);
-            pushMovies = true;
+        if (movieInList) {
+            savedMovies = savedMovies.filter(
+                savedMovie => savedMovie.id !== movie.id,
+            );
         } else {
-            movies.splice(movieIndex, 1);
+            this.removeFromOtherList(listName, movie.id);
+            savedMovies.push(movie);
+            // pushMovies = true;
         }
         // ===
-        localStorage.setItem(listName, JSON.stringify(movies));
-        return { pushMovies, movies };
+        localStorage.setItem(listName, JSON.stringify(savedMovies));
+        // return { pushMovies, savedMovies };
     }
-
     // проверка есть или нет в списке фильм который открыт в модалке
     isMovieInList(listName, id) {
-        let movies = this.getMovies(listName);
-        return movies.some(movie => movie.id === id);
+        let savedMovies = this.getMovies(listName);
+        return savedMovies.some(movie => movie.id === id);
     }
 
     removeFromOtherList(listName, id) {
@@ -63,42 +54,3 @@ export default class LocalStorageUtils {
         }
     }
 }
-
-// ======================================
-// class Movies {
-//     constructor() {
-//         this.lassNameActive = 'isActive';
-//         this.lableAdd = 'Добавить в список';
-//         this.labelRemove = 'Удалить из списка';
-//     }
-//     handleSetLocationStorage(element, id) {
-//         const { pushMovies, movies } = localStorageUtils.putMovies(id);
-
-//         if (pushMovies) {
-//             element.classList.add(this.lassNameActive);
-//             element.innerHTML = this.labelRemove;
-//         } else {
-//             element.classList.remove(this.lassNameActive);
-//             element.innerHTML = this.lableAdd;
-//         }
-//     }
-
-//     render() {
-//         const moviesStore = localStorageUtils.toggleMoviesInList();
-
-//         MOVIES.forEach({id, name}) => {
-//         let activeClass = '';
-//         let activeText = '';
-
-//         if (moviesStore.indexOf(id) === -1) {
-//             // повесить <button class="${activeClass}" onclick="moviesPage.handleSetLocationStorage(this, '${id}')">${activeText}</button> вместо текста кнопки
-//             activeText = this.lableAdd;
-//         } else {
-//             activeClass = ' ' + this.lassNameActive;
-//             activeText = this.labelRemove;
-//         }
-
-//         // }
-//     }
-// }
-// moviesPage.render();
