@@ -88,11 +88,11 @@
             rgba(0, 0, 0, 0.56)
         ),
         url('./images/header/page-1.jpg');
+    background-repeat: round;
 }
 .search {
     width: 280px;
     margin: 0 auto;
-    position: relative;
     border-bottom: 0.5px solid $secondaryColor;
     outline: none;
 
@@ -119,25 +119,18 @@ input::-webkit-input-placeholder {
     color: $secondaryColor;
 
 }
-.submit {
-    position: absolute;
-    background: none;
-    border: none;
-    top: 6px;
-    right: 2px;
-    width: 40px;
-    height: 100%;
-}
-.search .submit{
+.input-icon {
     background-image: url('./images/header/search-icon-header.svg');
-    width: 12px; 
-    height: 12px;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: center;
 }
 
 
 /*-----LIBRARY-----*/
 .page-library-header {
     height: 230px;
+    background-repeat: round;
     background-image: linear-gradient(
             to right,
             rgba(0, 0, 0, 0.56),
@@ -159,7 +152,7 @@ input::-webkit-input-placeholder {
     font-size: 12px;
     line-height: 1.33;
     color: $secondaryColor;
-
+    cursor: pointer;
     background: none;
     border: 1px solid $secondaryColor;
     box-sizing: border-box;
