@@ -5,15 +5,17 @@
 <div class="leftDiv">
        <button type="button" class="btnRight" id="dec"></button> 
 </div>
- {{!-- {{#paginate pagination type="first"}}
-         <p{{#if active}}  class="active"{{/if}}><a class="repos-pagination__link " href="?p={{n}}">{{n}}</a></p>
-         {{/paginate}}
-        <span class="repos-pagination__dots">...</span> --}}
+{{#unless 4 }}
+        {{#paginate pagination type="first"}}
+         <p data-action='{{n}}'{{#if active}}  {{/if}}><a class="repos-pagination__link " href="?p={{n}}">{{n}}</a></p>
+         {{/paginate}} 
+        <span class="repos-pagination__dots dots">...</span>
+{{/unless}}
        {{#paginate pagination type="middle" limit="5"}}
-       <p class="pag-btn{{#if active}} active{{/if}}"><a class="repos-pagination__link " href="?p={{n}}">{{n}}</a></p>
+       <p data-action='{{n}}' class="pag-btn{{#if active}} active{{/if}}"><a class="repos-pagination__link " href="?p={{n}}">{{n}}</a></p>
          {{/paginate}}  
       
-        <span class="repos-pagination__dots">...</span>
+        <span class="repos-pagination__dots ">...</span>
       
          {{#paginate pagination type="last"}}
        <p class="pag-btn"><a href="?p={{n}}" class="repos-pagination__link">{{n}}</a></p> 

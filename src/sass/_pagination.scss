@@ -1,6 +1,7 @@
 .pagination {
     margin: 0 auto;
     box-sizing: border-box;
+    text-align: center;
 }
 
 #pagDiv {
@@ -34,15 +35,15 @@
     color: black;
     display: flex;
     justify-content: space-around;
-    // transition: all 0.3s;
+    transition: all 0.3s;
 }
 
 .repos-pagination__dots {
     padding-right: 4px;
+    padding-bottom: 8px;
 }
 
 .right {
-    // margin-right: 10px;
     transform: rotate(180deg);
     border-radius: 5px;
 }
@@ -90,4 +91,7 @@
 }
 .leftDiv {
     margin-right: 16px;
+}
+.dots {
+    margin-left: 10px;
 }
