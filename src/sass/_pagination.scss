@@ -5,6 +5,7 @@
 }
 
 #pagDiv {
+    cursor: pointer;
     color: #000;
     max-width: 374px;
     box-sizing: border-box;
@@ -51,6 +52,8 @@
     border-radius: 5px;
 }
 .active {
+    cursor: pointer;
+    font-size: 14px;
     padding-top: 16px;
     height: 40px;
     background: url('./images/curentPage.jpg');
