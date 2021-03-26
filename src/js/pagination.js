@@ -55,20 +55,17 @@ const Pagination = {
     pagMarkup() {
         let page = content.page;
         let pageCount = content.pageCount;
-        if (pageCount < 2) {
-            this.parentNode.innerHTML = '';
-        } else {
-            this.helpers();
-            this.parentNode.innerHTML = paginationTpl(
-                {
-                    pagination: {
-                        page,
-                        pageCount,
-                    },
+
+        this.helpers();
+        this.parentNode.innerHTML = paginationTpl(
+            {
+                pagination: {
+                    page,
+                    pageCount,
                 },
-                Handlebars,
-            );
-        }
+            },
+            Handlebars,
+        );
     },
 
     increment() {
