@@ -13,6 +13,7 @@ const Pagination = {
     decrementBtn: null,
     reposLink: null,
     page: 1,
+    isInit: false,
 
     linkParent(selector) {
         this.parentNode = document.querySelector(selector);
@@ -27,10 +28,12 @@ const Pagination = {
     bindEvents() {
         this.incrementBtn.addEventListener('click', this.increment.bind(this));
         this.decrementBtn.addEventListener('click', this.decrement.bind(this));
-        this.reposLink.addEventListener(
-            'click',
-            this.onReposeLincClick.bind(this),
-        );
+        if (!this.isInit) {
+            this.reposLink.addEventListener(
+                'click',
+                this.onReposeLincClick.bind(this),
+            );
+        }
     },
 
     render() {
@@ -38,6 +41,8 @@ const Pagination = {
         this.pagMarkup();
         this.linkRefs();
         this.bindEvents();
+
+        this.isInit = true;
     },
     helpers() {
         Handlebars.registerHelper('paginate', paginate);
