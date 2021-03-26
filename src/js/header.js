@@ -96,10 +96,15 @@ export default {
 
         switch (this._tplName) {
             case params.TPL_NAMES.home:
+                content.getIncomingData = dataProcess.getTrending;
                 break;
             case params.TPL_NAMES.library:
+                content.getIncomingData = dataProcess.getWatched();
                 break;
         }
+
+        content.page = 1;
+        content.render();
     },
 
     onInput(e) {
