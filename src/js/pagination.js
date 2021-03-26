@@ -28,10 +28,7 @@ const Pagination = {
         this.incrementBtn.addEventListener('click', this.increment.bind(this));
         this.decrementBtn.addEventListener('click', this.decrement.bind(this));
         if (!this.isInit) {
-            this.reposLink.addEventListener(
-                'click',
-                this.lincClick.bind(this),
-            );
+            this.reposLink.addEventListener('click', this.lincClick.bind(this));
         }
     },
 
@@ -45,13 +42,11 @@ const Pagination = {
     helpers() {
         Handlebars.registerHelper('paginate', paginate);
         Handlebars.registerHelper('ifToMore', function (data, option) {
-            if (+data > 3) return option.fn(this);
+            if (+data > 3 && window.innerWidth > 768) return option.fn(this);
         });
         Handlebars.registerHelper('ifEnd', function (data, option) {
-            if (+content.pageCount - 2 > +data) return option.fn(this);
-        });
-        Handlebars.registerHelper('limit', function (data) {
-            return 5;
+            if (+content.pageCount - 2 > +data && window.innerWidth > 768)
+                return option.fn(this);
         });
     },
 
