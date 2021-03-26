@@ -13,8 +13,11 @@ export default {
     _closeModalBtnRef: null,
     _addToWatchedBtnRef: null,
     _addToQueueBtnRef: null,
+    _getRandoMovieBtnRef: null,
+    _trailerBtn: null,
 
     localStorageUtils: new LocalStorageUtils(),
+    movieId: null,
     movieObj: null,
 
     linkParent(selector) {
@@ -26,6 +29,7 @@ export default {
             this.loadCurrTemplate();
 
             const movieObj = await API.getMovieDetails({ movieId });
+            this.movieId = movieId;
             // ===============================
             movieObj.movieInWatched = this.localStorageUtils.isMovieInList(
                 this.localStorageUtils.listNames.watched,
@@ -75,6 +79,7 @@ export default {
         this._addToQueueBtnRef = this._parentNode.querySelector(
             '#js-queue-button',
         );
+        this._trailerBtn = this._parentNode.querySelector('#trailerBtn');
     },
 
     _addEventListeners() {
@@ -92,6 +97,7 @@ export default {
             'click',
             this._addToQueue.bind(this),
         );
+        // this._trailerBtn.addEventListener('click', this.getVideoUrl.bind(this));
     },
 
     _removeEventListeners() {
@@ -115,6 +121,7 @@ export default {
             'click',
             this._addToQueue.bind(this),
         );
+        // this._trailerBtn.removeEventListener('click', API.fetchTrailerFilm(id));
     },
 
     _closeModalOnClick(e) {
@@ -178,4 +185,17 @@ export default {
         console.log(`${err.name}: ${err.message}`);
     },
 };
+
+
+// const getRandoMovieBtnRef = document.querySelector('#get-random-movie');
+
+// getRandomMovie() {
+//     let randomId = Math.floor(100000 + Math.random() * 900000);
+//     console.log(randomId);
+//     this.render(randomId);
+// }
+
+// getRandoMovieBtnRef.addEventListener('click', this.getRandomMovie.bind(this));
+
 // console.log(Math.floor(100000 + Math.random() * 900000));
+
