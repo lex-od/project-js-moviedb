@@ -2,7 +2,6 @@
 import paginate from 'handlebars-paginate';
 import * as Handlebars from 'handlebars/runtime';
 import paginationTpl from '../templates/pagination.hbs';
-import paginationOnePage from '../templates/paginationOnePage.hbs';
 import content from './content';
 
 const Pagination = {
@@ -27,14 +26,10 @@ const Pagination = {
     bindEvents() {
         this.incrementBtn.addEventListener('click', this.increment.bind(this));
         this.decrementBtn.addEventListener('click', this.decrement.bind(this));
-        this.reposLink.addEventListener(
-            'click',
-            this.onReposeLincClick.bind(this),
-        );
+        this.reposLink.addEventListener('click', this.lincClick.bind(this));
     },
 
     render() {
-        // console.log(content.page, content.pageCount);
         this.pagMarkup();
         this.linkRefs();
         this.bindEvents();
@@ -75,8 +70,6 @@ const Pagination = {
         this.page += 1;
         content.page = this.page;
         content.render();
-        // content.page = content.page + 1;
-        // content.render;
     },
 
     decrement() {
@@ -87,7 +80,7 @@ const Pagination = {
         content.page = this.page;
         content.render();
     },
-    onReposeLincClick(e) {
+    lincClick(e) {
         if (!(e.target.tagName === 'SPAN' && e.target.dataset.action))
             return false;
         const curPage = e.target.dataset.action;
