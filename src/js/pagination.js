@@ -11,7 +11,7 @@ const Pagination = {
     incrementBtn: null,
     decrementBtn: null,
     reposLink: null,
-    page: 1,
+
     isInit: false,
 
     linkParent(selector) {
@@ -42,7 +42,7 @@ const Pagination = {
     helpers() {
         Handlebars.registerHelper('paginate', paginate);
         Handlebars.registerHelper('ifToMore', function (data, option) {
-            if (+data > 3 && window.innerWidth > 768) return option.fn(this);
+            if (+data > 3 && window.innerWidth > 767) return option.fn(this);
         });
         Handlebars.registerHelper('ifEnd', function (data, option) {
             if (+content.pageCount - 2 > +data && window.innerWidth > 768)
@@ -70,17 +70,17 @@ const Pagination = {
         if (content.page >= content.pageCount) {
             return;
         }
-        this.page += 1;
-        content.page = this.page;
+
+        content.page += 1;
         content.render();
     },
 
     decrement() {
-        if (this.page <= 1) {
+        if (content.page <= 1) {
             return;
         }
-        this.page -= 1;
-        content.page = this.page;
+        content.page -= 1;
+
         content.render();
     },
     lincClick(e) {
@@ -88,8 +88,7 @@ const Pagination = {
             return false;
         const curPage = e.target.dataset.action;
 
-        this.page = +curPage;
-        content.page = this.page;
+        content.page = +curPage;
 
         content.render();
     },
