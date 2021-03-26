@@ -1,8 +1,7 @@
 import content from './content';
 import params from '../json/headerParams.json';
 import debounce from 'lodash.debounce';
-import API from './services/api';
-import LocalStorageUtils from './services/localStorage';
+import dataProcess from './services/dataProcess';
 
 // 📌 Имортируем как объект header
 
@@ -94,31 +93,29 @@ export default {
 
         this._tplName = params.TPL_NAMES[e.target.dataset.tpl];
         this.render();
+
+        switch (this._tplName) {
+            case params.TPL_NAMES.home:
+                break;
+            case params.TPL_NAMES.library:
+                break;
+        }
     },
 
     onInput(e) {
         // Переопределяем функцию получения данных в объекте content
         if (e.target.value.trim()) {
             // Если что-то введено - запрашиваем поиск
-            content.getIncomingData = getIncDataOverride;
+            content.getIncomingData = dataProcess.searchMovies(e.target.value);
         } else {
             // Если пустая строка - отображаем популярные, как изначально
-            content.getIncomingData = getIncDataOriginal;
+            content.getIncomingData = dataProcess.getTrending;
         }
         // убираем сообщение
         this._messageHeader.classList.add('is-hidden');
 
         content.page = 1;
         content.render();
-
-        // Заменяющая функция (поиск)
-        function getIncDataOverride() {
-            return API.searchMovies({ query: e.target.value, page: this.page });
-        }
-        // Первоначальная функция (попуярные)
-        function getIncDataOriginal() {
-            return API.getTrending({ page: this.page });
-        }
     },
 
     // убираем сообщение
@@ -133,35 +130,14 @@ export default {
 
         switch (e.target.dataset.action) {
             case 'watched':
-                content.getIncomingData = getIncDataOvrWatched;
+                content.getIncomingData = dataProcess.getWatched();
                 break;
             case 'queue':
-                content.getIncomingData = getIncDataOvrQueue;
+                content.getIncomingData = dataProcess.getQueued();
                 break;
         }
 
         content.page = 1;
         content.render();
-
-        function getIncDataOvrWatched() {
-            const lsUtils = new LocalStorageUtils();
-            const watchedList = lsUtils.getMovies(lsUtils.listNames.watched);
-
-            const indexFrom = (this.page - 1) * 20;
-            const results = watchedList.slice(indexFrom, indexFrom + 20);
-            const total_pages = Math.ceil(watchedList.length / 20);
-
-            return Promise.resolve({ results, total_pages });
-        }
-        function getIncDataOvrQueue() {
-            const lsUtils = new LocalStorageUtils();
-            const watchedList = lsUtils.getMovies(lsUtils.listNames.queued);
-
-            const indexFrom = (this.page - 1) * 20;
-            const results = watchedList.slice(indexFrom, indexFrom + 20);
-            const total_pages = Math.ceil(watchedList.length / 20);
-
-            return Promise.resolve({ results, total_pages });
-        }
     },
 };
