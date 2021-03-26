@@ -1,7 +1,7 @@
 .pagination {
     margin: 0 auto;
     box-sizing: border-box;
-    text-align: center;
+    // text-align: center;
 }
 
 #pagDiv {
@@ -32,14 +32,13 @@
 
 .repos-pagination__link {
     text-decoration: none;
-    color: black;
+
     display: flex;
     justify-content: space-around;
     transition: all 0.3s;
 }
 
 .repos-pagination__dots {
-    padding-right: 4px;
     padding-bottom: 8px;
 }
 
@@ -80,18 +79,7 @@
     text-align: center;
     justify-content: center;
     text-decoration: none;
-
-    // justify-content: space-around;
 }
 .pag-btn {
     flex: 0 0 40px;
-}
-.rightDiv {
-    margin-left: 16px;
-}
-.leftDiv {
-    margin-right: 16px;
-}
-.dots {
-    margin-left: 10px;
 }
