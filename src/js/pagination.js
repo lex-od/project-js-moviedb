@@ -5,8 +5,7 @@ import paginationTpl from '../templates/pagination.hbs';
 import paginationOnePage from '../templates/paginationOnePage.hbs';
 import content from './content';
 
-Handlebars.registerHelper('paginate', paginate);
-export default {
+const Pagination = {
     parentNode: null,
     paginationRef: null,
     pagDiv: null,
@@ -21,7 +20,7 @@ export default {
     linkRefs() {
         this.incrementBtn = document.querySelector('#inc');
         this.decrementBtn = document.querySelector('#dec');
-        this.reposLink = document.querySelector('.pag-btn');
+        this.reposLink = this.parentNode;
         this.paginationRef = document.querySelector('.pagination');
     },
 
@@ -40,6 +39,18 @@ export default {
         this.linkRefs();
         this.bindEvents();
     },
+    helpers() {
+        Handlebars.registerHelper('paginate', paginate);
+        Handlebars.registerHelper('ifToMore', function (data, option) {
+            if (+data > 3) return option.fn(this);
+        });
+        Handlebars.registerHelper('ifEnd', function (data, option) {
+            if (+content.pageCount - 2 > +data) return option.fn(this);
+        });
+        Handlebars.registerHelper('limit', function (data) {
+            return 5;
+        });
+    },
 
     pagMarkup() {
         let page = content.page;
@@ -47,12 +58,16 @@ export default {
         if (pageCount < 2) {
             this.parentNode.innerHTML = '';
         } else {
-            this.parentNode.innerHTML = paginationTpl({
-                pagination: {
-                    page,
-                    pageCount,
+            this.helpers();
+            this.parentNode.innerHTML = paginationTpl(
+                {
+                    pagination: {
+                        page,
+                        pageCount,
+                    },
                 },
-            });
+                Handlebars,
+            );
         }
     },
 
@@ -76,11 +91,15 @@ export default {
         content.render();
     },
     onReposeLincClick(e) {
-        e.preventDefault();
-        console.log(e);
-        // this.page = e.target.dataset;
-        // content.page = this.page;
+        if (!(e.target.tagName === 'SPAN' && e.target.dataset.action))
+            return false;
+        const curPage = e.target.dataset.action;
 
-        // content.render();
+        this.page = +curPage;
+        content.page = this.page;
+
+        content.render();
     },
 };
+
+export default Pagination;
