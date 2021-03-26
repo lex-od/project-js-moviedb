@@ -1,5 +1,6 @@
 import API from '../js/services/api';
 import LocalStorageUtils from './services/localStorage';
+import noImg from '../images/no-img.jpg';
 // 📌 Имортируем как объект modal
 
 export default {
@@ -36,7 +37,7 @@ export default {
             );
             // =============================
             this.renderCurrTplMarkup(movieObj);
-            this.movieObj = movieObj;
+            this.movieObj = { ...movieObj, imgTpl: noImg };
 
             this._linkRefs();
             this._addEventListeners();
@@ -50,7 +51,15 @@ export default {
     },
 
     renderCurrTplMarkup(movieObj) {
-        this._parentNode.innerHTML = this._currTpl(movieObj);
+
+        this._parentNode.innerHTML = this._currTpl({
+            ...movieObj,
+            imgTpl: noImg,
+        });
+
+
+      
+
         this._parentNode.classList.remove('modal-is-hidden');
         this._parentNode.classList.add('modal-is-open');
     },
@@ -175,3 +184,5 @@ export default {
         console.log(`${err.name}: ${err.message}`);
     },
 };
+// console.log(Math.floor(100000 + Math.random() * 900000));
+
