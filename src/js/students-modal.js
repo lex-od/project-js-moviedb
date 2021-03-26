@@ -19,6 +19,7 @@ export default {
             this.renderCurrTplMarkup(studentsList);
 
             // console.log(studentsList);
+            document.body.classList.add('scroll-hidden');
             this._linkRefs();
             this._addEventListeners();
         } catch (err) {
@@ -39,6 +40,7 @@ export default {
     },
 
     clearMarkup() {
+        document.body.classList.remove('scroll-hidden');
         this._parentNode.classList.remove('modal-is-open');
         this._parentNode.classList.add('modal-is-hidden');
         this._removeEventListeners.bind(this);
