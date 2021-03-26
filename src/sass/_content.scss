@@ -81,6 +81,8 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding-left: 2px;
+
     &.accent-color {
         color: $secondaryAccentColor;
         margin: 0;
@@ -90,6 +92,7 @@
 .card-content {
     margin-bottom: 20px;
     border-radius: 5px;
+
     // @include for-size(tablet) {
     //     margin-bottom: 30px;
     // }

@@ -5,6 +5,8 @@ import modal from './modal';
 import noImage from '../images/no-img.jpg';
 import noResults from '../images/nores3.jpg';
 import header from './header';
+import { Spinner } from 'spin.js';
+
 // 📌 Имортируем как объект content
 
 export default {
@@ -13,9 +15,30 @@ export default {
     _goTopBtn: null,
     _tplName: 'gallery',
     _currTpl: null,
+    loader: null, //spinner
     page: 1,
     pageCount: 0,
+    // const opts = {
+    //     lines: 20,
+    //     length: 40,
+    //     width: 4,
+    //     radius: 25,
+    //     scale: 0.55,
+    //     corners: 1,
+    //     speed: 1.2,
+    //     rotate: 29,
+    //     animation: 'spinner-line-shrink',
+    //     direction: 1,
+    //     color: '$primaryAccentColor',
+    //     fadeColor: 'transparent',
+    //     top: '49%',
+    //     left: '49%',
+    //     shadow: '0 0 1px transparent',
+    //     zIndex: 2000000000,
+    //     className: 'spinner',
+    //     position: 'absolute',
 
+    // };
     linkParent(selector) {
         this._parentNode = document.querySelector(selector);
     },
@@ -46,6 +69,7 @@ export default {
     },
     _linkRefs() {
         this._movieListNode = this._parentNode.querySelector('.gallery-list');
+        this.loader = this._parentNode.querySelector('#loading'); //spinner
         // this._image = this._parentNode.querySelector('.gallery-picture');
 
         // добавление кнопки scrollUp
@@ -139,4 +163,37 @@ export default {
             });
         }
     },
+    //Spinner
+
+    hideSlider() {
+        this.loader.classList.add('is-hidden');
+    },
+
+    showSlider() {
+        this.loader.classList.remove('is-hidden');
+    },
 };
+
+// const opts = {
+//     lines: 20,
+//     length: 40,
+//     width: 4,
+//     radius: 25,
+//     scale: 0.55,
+//     corners: 1,
+//     speed: 1.2,
+//     rotate: 29,
+//     animation: 'spinner-line-shrink',
+//     direction: 1,
+//     color: '$primaryAccentColor',
+//     fadeColor: 'transparent',
+//     top: '49%',
+//     left: '49%',
+//     shadow: '0 0 1px transparent',
+//     zIndex: 2000000000,
+//     className: 'spinner',
+//     position: 'absolute',
+
+// };
+
+//  const spinner = new Spinner(opts).spin(this.loader);
