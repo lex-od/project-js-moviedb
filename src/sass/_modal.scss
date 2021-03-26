@@ -4,13 +4,12 @@
     pointer-events: none;
 }
 
-.modal-is-open {
-    opacity: 1;
+.scroll-hidden {
+    overflow: hidden;
 }
 
 .backdrop {
-    transition: all 500ms linear;
-    overflow: scroll;
+    transition: all 300ms linear;
     position: fixed;
     top: 0;
     left: 0;
@@ -20,7 +19,6 @@
 }
 
 .modal-window {
-    transition: all 500ms linear;
     width: 280px;
     position: relative;
     margin: 10px auto;
@@ -34,6 +32,7 @@
 
     @include for-size(tablet) {
         width: 618px;
+        max-height: 95%;
         display: flex;
         padding: 42px 28px 40px 28px;
         margin: auto;
@@ -67,16 +66,11 @@
 }
 
 .modal-image {
+    display: block;
     width: 240px;
-    height: 357px;
     border-radius: 5px;
     @include for-size(tablet) {
-        width: 264px;
-        height: 374px;
-    }
-    @include for-size(desktop) {
-        width: 396px;
-        height: 478px;
+        width: calc(100% / 2 - 45px);
     }
 }
 
@@ -93,7 +87,9 @@
 }
 
 .modal-info {
+    width: 100%;
     @include for-size(tablet) {
+        width: calc(100% / 2 - 45px);
         margin-left: 32px;
     }
     @include for-size(desktop) {
