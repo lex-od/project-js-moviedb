@@ -38,7 +38,7 @@ export default {
             // =============================
             this.renderCurrTplMarkup(movieObj);
             this.movieObj = { ...movieObj, imgTpl: noImg };
-
+            document.body.classList.add('scroll-hidden');
             this._linkRefs();
             this._addEventListeners();
         } catch (err) {
@@ -51,24 +51,18 @@ export default {
     },
 
     renderCurrTplMarkup(movieObj) {
-
         this._parentNode.innerHTML = this._currTpl({
             ...movieObj,
             imgTpl: noImg,
         });
 
-
-      
-
         this._parentNode.classList.remove('modal-is-hidden');
-        this._parentNode.classList.add('modal-is-open');
     },
 
     clearMarkup() {
-        this._parentNode.classList.remove('modal-is-open');
+        document.body.classList.remove('scroll-hidden');
         this._parentNode.classList.add('modal-is-hidden');
         this._removeEventListeners.bind(this);
-        // this._parentNode.innerHTML = '';
     },
 
     _linkRefs() {
@@ -185,4 +179,3 @@ export default {
     },
 };
 // console.log(Math.floor(100000 + Math.random() * 900000));
-

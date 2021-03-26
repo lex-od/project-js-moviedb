@@ -2,19 +2,19 @@
 <div class="modal-window">
       <button class="close-modal" id="close-modal" type="button">
      </button>
-     {{#if poster_path}}
-    <img
-        class="modal-image"
-        src="https://image.tmdb.org/t/p/w500{{poster_path}}"
-        alt="{{title}}"
-    />
-    {{else}}
-       <img
-        class="modal-image"
-        src="{{imgTpl}}"
-        alt="no-image"
-    />
-    {{/if}}
+         {{#if poster_path}}
+        <img
+          class="modal-image"
+           src="https://image.tmdb.org/t/p/w500{{poster_path}}"
+           alt="{{title}}"
+        />
+        {{else}}
+           <img
+            class="modal-image"
+            src="{{imgTpl}}"
+           alt="no-image"
+        />
+        {{/if}}
     <div class="modal-info">
         <h2 class="modal-movie-title">{{title}}</h2>
         <div class="modal-info-lists">
@@ -33,7 +33,7 @@
             <li class="modal-info-list-item">
                 <span class="modal-info-average">
                      {{vote_average}} 
-                </span>/
+                </span> /
                 <span class="modal-info-count">
                     {{vote_count}}
                 </span>
