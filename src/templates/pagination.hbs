@@ -7,7 +7,7 @@
          {{/paginate}} 
         <span class="repos-pagination__dots dots">...</span>
 {{/ifToMore}}
-       {{#paginate pagination type="middle" limit="{{limit}}"}}
+       {{#paginate pagination type="middle" limit="5"}}
        <p  class="pag-btn{{#if active}} active{{/if}}"><span data-action='{{n}}' class="repos-pagination__link " >{{n}}</span></p>
          {{/paginate}}  
       {{#ifEnd pagination.page}}
