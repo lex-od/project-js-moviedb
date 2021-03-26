@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "first_name": "Aleksey",
+        "last_name": "Yesin",
+        "avatar": "../images/students/yesin.jpg",
+        "job_title": "Future senior-pomidor & best teamlead"
+    },
+    {
+        "id": 2,
+        "first_name": "Vlad",
+        "last_name": "Deputat",
+        "avatar": "https://robohash.org/sedquibusdamalias.png?size=250x250&set=set1",
+        "job_title": "OMG scrammaster & TOP modal"
+    },
+    {
+        "id": 3,
+        "first_name": "Mykhailo",
+        "last_name": "Khmara",
+        "avatar": "../images/students/khmara.jpg",
+        "job_title": "Sales Representative"
+    },
+    {
+        "id": 4,
+        "first_name": "Elena",
+        "last_name": "Abramova",
+        "avatar": "../images/students/abramova.jpg",
+        "job_title": "Technical Writer"
+    },
+    {
+        "id": 5,
+        "first_name": "Dominique",
+        "last_name": "Skaife d'Ingerthorpe",
+        "avatar": "https://robohash.org/repellendusodiolaborum.png?size=250x250&set=set1",
+        "job_title": "GIS Technical Architect"
+    },
+    {
+        "id": 6,
+        "first_name": "Oleksandr",
+        "last_name": "Myrvoda",
+        "avatar": "../images/students/myrvoda.jpg",
+        "job_title": "Local storage & footer"
+    }
+]
