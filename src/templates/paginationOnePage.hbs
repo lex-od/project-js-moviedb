@@ -1,0 +1,5 @@
+<div id="one">
+    {{#paginate pagination type="middle"  limit="1"}}
+          <p data-action='{{n}}' class="pag-btn{{#if active}} active{{/if}}"><a class="repos-pagination__link" style="padding: 40;" href="?p={{n}}">{{n}}</a></p>
+    {{/paginate}} 
+</div>

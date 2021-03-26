@@ -1,6 +1,7 @@
 .pagination {
     margin: 0 auto;
     box-sizing: border-box;
+    text-align: center;
 }
 
 #pagDiv {
@@ -13,7 +14,7 @@
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
-    line-height: 20px;
+    line-height: 8px;
     align-items: center;
     text-align: center;
     justify-content: center;
@@ -34,15 +35,15 @@
     color: black;
     display: flex;
     justify-content: space-around;
-    // transition: all 0.3s;
+    transition: all 0.3s;
 }
 
 .repos-pagination__dots {
     padding-right: 4px;
+    padding-bottom: 8px;
 }
 
 .right {
-    // margin-right: 10px;
     transform: rotate(180deg);
     border-radius: 5px;
 }
@@ -51,7 +52,7 @@
     border-radius: 5px;
 }
 .active {
-    padding-top: 10px;
+    padding-top: 16px;
     height: 40px;
     background: url('./images/curentPage.jpg');
     border-radius: 5px;
@@ -90,4 +91,7 @@
 }
 .leftDiv {
     margin-right: 16px;
+}
+.dots {
+    margin-left: 10px;
 }

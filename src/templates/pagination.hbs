@@ -1,23 +1,22 @@
-
-
-
-
 <div class="leftDiv">
        <button type="button" class="btnRight" id="dec"></button> 
 </div>
- {{!-- {{#paginate pagination type="first"}}
-         <p{{#if active}}  class="active"{{/if}}><a class="repos-pagination__link " href="?p={{n}}">{{n}}</a></p>
-         {{/paginate}}
-        <span class="repos-pagination__dots">...</span> --}}
-       {{#paginate pagination type="middle" limit="5"}}
-       <p class="pag-btn{{#if active}} active{{/if}}"><a class="repos-pagination__link " href="?p={{n}}">{{n}}</a></p>
+{{#ifToMore pagination.page}}
+        {{#paginate pagination type="first"}}
+         <p {{#if active}}  {{/if}}><span data-action='{{n}}' class="repos-pagination__link " >{{n}}</span></p>
+         {{/paginate}} 
+        <span class="repos-pagination__dots dots">...</span>
+{{/ifToMore}}
+       {{#paginate pagination type="middle" limit="{{limit}}"}}
+       <p  class="pag-btn{{#if active}} active{{/if}}"><span data-action='{{n}}' class="repos-pagination__link " >{{n}}</span></p>
          {{/paginate}}  
-      
-        <span class="repos-pagination__dots">...</span>
+      {{#ifEnd pagination.page}}
+        <span class="repos-pagination__dots ">...</span>
       
          {{#paginate pagination type="last"}}
-       <p class="pag-btn"><a href="?p={{n}}" class="repos-pagination__link">{{n}}</a></p> 
+       <p class="pag-btn"><span data-action='{{n}}'  class="repos-pagination__link">{{n}}</span></p> 
         {{/paginate}}
+        {{/ifEnd}}
 <div class="rightDiv">
      <button type="button" class="btnRight right" id="inc"></button>       
 </div> 
