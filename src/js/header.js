@@ -47,12 +47,14 @@ export default {
 
     _linkRefs() {
         this._navPagesRef = this._parentNode.querySelector('#nav-pages');
-        this._messageHeader = this._parentNode.querySelector('.message-header');
 
         switch (this._tplName) {
             case params.TPL_NAMES.home:
                 this._inputRef = this._parentNode.querySelector(
                     '#search-input',
+                );
+                this._messageHeader = this._parentNode.querySelector(
+                    '.message-header',
                 );
                 break;
             case params.TPL_NAMES.library:

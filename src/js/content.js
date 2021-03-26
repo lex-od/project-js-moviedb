@@ -49,7 +49,7 @@ export default {
         // this._image = this._parentNode.querySelector('.gallery-picture');
 
         // добавление кнопки scrollUp
-        this._goTopBtn = document.querySelector('.back_to_top');
+        // this._goTopBtn = document.querySelector('.back_to_top');
     },
     _bindEvents() {
         this._movieListNode?.addEventListener(
@@ -58,8 +58,8 @@ export default {
         );
 
         // добавление кнопки scrollUp
-        window.addEventListener('scroll', this.trackScroll.bind(this));
-        this._goTopBtn.addEventListener('click', this.backToTop.bind(this));
+        // window.addEventListener('scroll', this.trackScroll.bind(this));
+        // this._goTopBtn.addEventListener('click', this.backToTop.bind(this));
     },
 
     getIncomingData() {
