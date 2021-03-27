@@ -4,7 +4,13 @@ import modal from './modal';
 import noImage from '../images/no-img.jpg';
 import noResults from '../images/nores3.jpg';
 import header from './header';
+
+import { spinner } from './spinner';
+import 'spin.js/spin.css';
+console.log(spinner);
+
 import dataProcess from './services/dataProcess';
+
 
 // 📌 Имортируем как объект content
 
@@ -14,6 +20,7 @@ export default {
 
     _tplName: 'gallery',
     _currTpl: null,
+    loader: document.querySelector('#loading'), //spinner
     page: 1,
     pageCount: 0,
 
@@ -25,6 +32,10 @@ export default {
         try {
             this.loadCurrTemplate();
 
+
+            spinner.spin(this.loader);
+            const incomData = await this.getIncomingData();
+
             const incomData = await dataProcess.currFunc(this.page);
 
             // показываем ошибку при пустом массиве
@@ -35,6 +46,7 @@ export default {
             this.pageCount = incomData.total_pages || 0;
 
             this.renderCurrTplMarkup(incomData.results);
+            spinner.stop();
         } catch (err) {
             this._incomErrorHandler(err);
         }
@@ -44,9 +56,12 @@ export default {
         modal.linkParent('.backdrop');
         pagination.linkParent('.pagination');
         pagination.render();
+        // spinner.spin(this.loader);
     },
     _linkRefs() {
         this._movieListNode = this._parentNode.querySelector('.gallery-list');
+        // this.loader = this._parentNode.querySelector('#loading'); //spinner
+
         // this._image = this._parentNode.querySelector('.gallery-picture');
     },
     _bindEvents() {
@@ -111,4 +126,25 @@ export default {
 
         modal.render(Number(movieId));
     },
+
+
+    // добавление кнопки scrollUp
+    trackScroll() {
+        const scrolled = window.pageYOffset;
+        const coords = document.documentElement.clientHeight;
+        if (scrolled > coords) {
+            this._goTopBtn.classList.add('back_to_top-show');
+        }
+    },
+
+    backToTop() {
+        if (window.pageYOffset > 0) {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
+        }
+    },
+    
+
 };
