@@ -114,33 +114,3 @@
     margin: auto;
     border-radius: 5px;
 }
-
-// добавление кнопки scrollUp
-.back_to_top {
-    position: fixed;
-    bottom: 100px;
-    right: 20px;
-    z-index: 9999;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    line-height: 40px;
-    background: $modalTextColor;
-    background-image: url('https://www.meme-arsenal.com/memes/eedf1e0ba68a87e7f45a146904c99ce8.jpg');
-    background-size: cover;
-    cursor: pointer;
-    border-radius: 50%;
-    display: none;
-    @include for-size(tablet) {
-        width: 50px;
-        height: 50px;
-        bottom: 125px;
-        right: 30px;
-    }
-}
-.back_to_top:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-.back_to_top-show {
-    display: block;
-}
