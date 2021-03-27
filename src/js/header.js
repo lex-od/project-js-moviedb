@@ -142,16 +142,27 @@ export default {
             return;
         }
 
-        switch (e.target.dataset.action) {
-            case 'watched':
-                dataProcess.setCurrFunc(dpParams.FUNCTIONS.WATCHED);
-                break;
-            case 'queue':
-                dataProcess.setCurrFunc(dpParams.FUNCTIONS.QUEUED);
-                break;
-        }
+        const btnType = e.target.dataset.action;
 
+        // Новая функция отрисовки основного контента
+        dataProcess.setCurrFunc(dpParams.FUNCTIONS[btnType.toUpperCase()]);
+
+        // Устанавливаем стиль текущей кнопки
+        this.setCurrLibraryBtn(btnType);
+
+        // Рендерим основной контент
         content.page = 1;
         content.render();
+    },
+
+    setCurrLibraryBtn(btnType) {
+        const otherBtnType = btnType === 'watched' ? 'queued' : 'watched';
+
+        this._libWrapperRef
+            .querySelector(`[data-action="${btnType}"]`)
+            .classList.add('current-state');
+        this._libWrapperRef
+            .querySelector(`[data-action="${otherBtnType}"]`)
+            .classList.remove('current-state');
     },
 };

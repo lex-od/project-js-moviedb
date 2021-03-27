@@ -5,7 +5,6 @@
 }
 
 #pagDiv {
-    cursor: pointer;
     color: #000;
     max-width: 374px;
     box-sizing: border-box;
@@ -33,7 +32,7 @@
 
 .repos-pagination__link {
     text-decoration: none;
-
+    cursor: pointer;
     display: flex;
     justify-content: space-around;
     transition: all 0.3s;

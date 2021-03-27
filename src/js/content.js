@@ -15,7 +15,7 @@ import dataProcess from './services/dataProcess';
 export default {
     _parentNode: null,
     _movieListNode: null,
-
+    _paginationNode: document.querySelector('#pagDiv'),
     _tplName: 'gallery',
     _currTpl: null,
     loader: document.querySelector('#loading'), //spinner
@@ -57,9 +57,6 @@ export default {
     },
     _linkRefs() {
         this._movieListNode = this._parentNode.querySelector('.gallery-list');
-        // this.loader = this._parentNode.querySelector('#loading'); //spinner
-
-        // this._image = this._parentNode.querySelector('.gallery-picture');
     },
     _bindEvents() {
         this._movieListNode?.addEventListener(
@@ -88,10 +85,13 @@ export default {
 
     renderCurrTplMarkup(movieArr) {
         if (!movieArr.length) {
-            this._parentNode.innerHTML = `<img class="bad-request" src="${noResults}" alt="bad request"  />`;
+            this._parentNode.innerHTML = `<div><img class="bad-request" src="${noResults}" alt="bad request" /></div>`;
+            this._paginationNode.style.display = 'none';
+            // this._paginationNode.innerHTML = '';
             return;
         }
         movieArr = this.addGenresStr(movieArr);
+        this._paginationNode.style.display = 'flex';
         //Вариант 1
         // movieArr = movieArr.map(movie => ({ ...movie, imageTpl: noImage }));
 
