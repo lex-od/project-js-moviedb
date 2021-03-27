@@ -114,15 +114,6 @@ export default {
     getUrl(id) {
         return fetch(
             `${apiParams.ENDPOINT}/movie/${id}/videos?api_key=${apiParams.API_KEY}`,
-        )
-            .then(response => response.json())
-            .then(videos => {
-                if (videos.results[0].site === 'YouTube') {
-                    return videos.results[0].key;
-                }
-            })
-            .catch(error => {
-                return '1dgLEDdFddk';
-            });
+        );
     },
 };
