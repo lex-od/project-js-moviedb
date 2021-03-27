@@ -1,6 +1,10 @@
 import API from '../js/services/api';
 import LocalStorageUtils from './services/localStorage';
 import noImg from '../images/no-img.jpg';
+import dataProcess from './services/dataProcess';
+import dpParams from '../json/dataProcParams.json';
+import content from './content';
+
 // 📌 Имортируем как объект modal
 
 export default {
@@ -51,14 +55,10 @@ export default {
     },
 
     renderCurrTplMarkup(movieObj) {
-
         this._parentNode.innerHTML = this._currTpl({
             ...movieObj,
             imgTpl: noImg,
         });
-
-
-      
 
         this._parentNode.classList.remove('modal-is-hidden');
         this._parentNode.classList.add('modal-is-open');
@@ -155,6 +155,8 @@ export default {
             this.localStorageUtils.listNames.watched,
             this.movieObj,
         );
+
+        this.updateContent();
     },
 
     _addToQueue() {
@@ -178,6 +180,18 @@ export default {
             this.localStorageUtils.listNames.queued,
             this.movieObj,
         );
+
+        this.updateContent();
+    },
+
+    updateContent() {
+        if (
+            dataProcess.currName === dpParams.FUNCTIONS.WATCHED ||
+            dataProcess.currName === dpParams.FUNCTIONS.QUEUED
+        ) {
+            content.render();
+            console.log('update');
+        }
     },
 
     _incomErrorHandler(err) {
@@ -185,4 +199,3 @@ export default {
     },
 };
 // console.log(Math.floor(100000 + Math.random() * 900000));
-

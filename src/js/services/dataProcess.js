@@ -1,14 +1,18 @@
 import API from './api';
 import LocalStorageUtils from './localStorage';
+import dpParams from '../../json/dataProcParams.json';
 
 export default {
+    currName: '',
+    currFunc: null,
+
     // Прикрепляем значение переменной query через замыкание
     searchMovies(query) {
         return page => API.searchMovies({ query, page });
     },
 
-    getTrending(page) {
-        return API.getTrending({ page });
+    getTrending() {
+        return page => API.getTrending({ page });
     },
 
     // Сохраняем this
@@ -36,5 +40,14 @@ export default {
         const total_pages = Math.ceil(movieList.length / 20);
 
         return { results, total_pages };
+    },
+
+    setCurrFunc(currName, params) {
+        if (!Object.values(dpParams.FUNCTIONS).includes(currName)) {
+            return;
+        }
+
+        this.currName = currName;
+        this.currFunc = this[currName](params);
     },
 };

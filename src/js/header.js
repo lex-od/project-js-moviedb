@@ -2,6 +2,7 @@ import content from './content';
 import params from '../json/headerParams.json';
 import debounce from 'lodash.debounce';
 import dataProcess from './services/dataProcess';
+import dpParams from '../json/dataProcParams.json';
 
 // 📌 Имортируем как объект header
 
@@ -96,10 +97,10 @@ export default {
 
         switch (this._tplName) {
             case params.TPL_NAMES.home:
-                content.getIncomingData = dataProcess.getTrending;
+                dataProcess.setCurrFunc(dpParams.FUNCTIONS.TREND);
                 break;
             case params.TPL_NAMES.library:
-                content.getIncomingData = dataProcess.getWatched();
+                dataProcess.setCurrFunc(dpParams.FUNCTIONS.WATCHED);
                 break;
         }
 
@@ -108,13 +109,13 @@ export default {
     },
 
     onInput(e) {
-        // Переопределяем функцию получения данных в объекте content
+        // Переопределяем функцию получения данных
         if (e.target.value.trim()) {
             // Если что-то введено - запрашиваем поиск
-            content.getIncomingData = dataProcess.searchMovies(e.target.value);
+            dataProcess.setCurrFunc(dpParams.FUNCTIONS.MOVIES, e.target.value);
         } else {
             // Если пустая строка - отображаем популярные, как изначально
-            content.getIncomingData = dataProcess.getTrending;
+            dataProcess.setCurrFunc(dpParams.FUNCTIONS.TREND);
         }
         // убираем сообщение
         this._messageHeader.classList.add('is-hidden');
@@ -135,10 +136,10 @@ export default {
 
         switch (e.target.dataset.action) {
             case 'watched':
-                content.getIncomingData = dataProcess.getWatched();
+                dataProcess.setCurrFunc(dpParams.FUNCTIONS.WATCHED);
                 break;
             case 'queue':
-                content.getIncomingData = dataProcess.getQueued();
+                dataProcess.setCurrFunc(dpParams.FUNCTIONS.QUEUED);
                 break;
         }
 

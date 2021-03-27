@@ -17,8 +17,6 @@ export default {
     page: 1,
     pageCount: 0,
 
-    getIncomingData: dataProcess.getTrending,
-
     linkParent(selector) {
         this._parentNode = document.querySelector(selector);
     },
@@ -27,7 +25,7 @@ export default {
         try {
             this.loadCurrTemplate();
 
-            const incomData = await this.getIncomingData(this.page);
+            const incomData = await dataProcess.currFunc(this.page);
 
             // показываем ошибку при пустом массиве
             if (!incomData.results.length) {
