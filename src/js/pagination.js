@@ -36,7 +36,6 @@ const Pagination = {
         this.pagMarkup();
         this.linkRefs();
         this.bindEvents();
-
         this.isInit = true;
     },
     helpers() {
