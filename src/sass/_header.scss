@@ -180,7 +180,12 @@ input::-webkit-input-placeholder {
             margin-right: 15px;
         }
     }
+
+    &.current-state {
+        background-color: #fff;
+    }
 }
+
 .header-btn:hover,
 .header-btn:focus {
     background: $secondaryAccentColor;
