@@ -1,0 +1,85 @@
+.students-list-total {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -15px;
+    @include for-size(tablet) {
+        margin-left: -30px;
+    }
+    @include for-size(tablet) {
+        margin-left: -15px;
+    }
+}
+
+.students-item {
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    // color: $secondaryColor;
+    background-color: $primaryBackgroundColor;
+    margin-top: 15px;
+    // margin-left: 15px;
+
+    @include for-size(tablet) {
+        align-self: flex-start;
+        flex-basis: calc(100% / 2- 15px);
+        margin-top: 15px;
+        margin-left: 25px;
+    }
+    @include for-size(desktop) {
+        flex-basis: calc(100% / 3- 15px);
+    }
+}
+
+.students-image-wrapper {
+    overflow: hidden;
+
+    width: 250px;
+    height: 250px;
+    @include for-size(tablet) {
+        // width: 250px;
+        height: 250px;
+    }
+    @include for-size(desktop) {
+        // width: 250px;
+        height: 300px;
+    }
+}
+
+.students-card-content {
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.students-title {
+    @include card-title();
+    // font-family: 'Roboto', sans-serif;
+    // font-size: 12px;
+    // text-align: left;
+    // margin-top: 10px;
+    // margin-bottom: 0;
+    // font-weight: 500;
+    // line-height: 1.18;
+    // white-space: nowrap;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+    padding-left: 10px;
+    width: 250px;
+    &:last-child {
+        color: $secondaryAccentColor;
+    }
+}
+
+.backdrop {
+    @include backdrop();
+
+    overflow-y: scroll;
+}
+// .scroll-hidden {
+//     @include scroll-hidden();
+// }
+
+// .modal-window {
+//     @include modal-window();
+// }

@@ -1,19 +1,23 @@
-import API from './services/api';
 import pagination from './pagination';
 import genresService from './services/genresService';
 import modal from './modal';
 import noImage from '../images/no-img.jpg';
 import noResults from '../images/nores3.jpg';
 import header from './header';
+
 import { spinner } from './spinner';
 import 'spin.js/spin.css';
 console.log(spinner);
+
+import dataProcess from './services/dataProcess';
+
+
 // 📌 Имортируем как объект content
 
 export default {
     _parentNode: null,
     _movieListNode: null,
-    _goTopBtn: null,
+
     _tplName: 'gallery',
     _currTpl: null,
     loader: document.querySelector('#loading'), //spinner
@@ -28,8 +32,11 @@ export default {
         try {
             this.loadCurrTemplate();
 
+
             spinner.spin(this.loader);
             const incomData = await this.getIncomingData();
+
+            const incomData = await dataProcess.currFunc(this.page);
 
             // показываем ошибку при пустом массиве
             if (!incomData.results.length) {
@@ -56,23 +63,12 @@ export default {
         // this.loader = this._parentNode.querySelector('#loading'); //spinner
 
         // this._image = this._parentNode.querySelector('.gallery-picture');
-
-        // добавление кнопки scrollUp
-        // this._goTopBtn = document.querySelector('.back_to_top');
     },
     _bindEvents() {
         this._movieListNode?.addEventListener(
             'click',
             this.onMovieListClick.bind(this),
         );
-
-        // добавление кнопки scrollUp
-        // window.addEventListener('scroll', this.trackScroll.bind(this));
-        // this._goTopBtn.addEventListener('click', this.backToTop.bind(this));
-    },
-
-    getIncomingData() {
-        return API.getTrending({ page: this.page });
     },
 
     addGenresStr(movieArr) {
@@ -131,6 +127,7 @@ export default {
         modal.render(Number(movieId));
     },
 
+
     // добавление кнопки scrollUp
     trackScroll() {
         const scrolled = window.pageYOffset;
@@ -148,13 +145,6 @@ export default {
             });
         }
     },
-    //Spinner
+    
 
-    // hideSlider() {
-    //     this.loader.classList.add('is-hidden');
-    // },
-
-    // showSlider() {
-    //     this.loader.classList.remove('is-hidden');
-    // },
 };

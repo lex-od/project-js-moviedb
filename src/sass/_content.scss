@@ -81,7 +81,11 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
     padding-left: 2px;
+
+
+    // @include card-title();
 
     &.accent-color {
         color: $secondaryAccentColor;
@@ -117,6 +121,7 @@
     border-radius: 5px;
 }
 
+
 // добавление кнопки scrollUp
 .back_to_top {
     position: fixed;
@@ -149,3 +154,4 @@
 .spinner {
     min-height: 50vh;
 }
+

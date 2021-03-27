@@ -112,6 +112,7 @@
     font-size: 14px;
     line-height: 1.14;
     color: $secondaryColor;
+    padding-right: 20px;
 }
 input::-webkit-input-placeholder {
     font-family: Roboto;
@@ -120,10 +121,14 @@ input::-webkit-input-placeholder {
     line-height: 1.14;
     color: $secondaryColor;
 }
+// input:hover,
+// input:focus {
+//     color: orange;
+// }
 .input-icon {
     background-image: url('./images/header/search-icon-header.svg');
     background-repeat: no-repeat;
-    background-position-x: right;
+    background-position-x: 98.5%;
     background-position-y: center;
 }
 
