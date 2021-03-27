@@ -12,6 +12,8 @@ export default {
     _inputRef: null,
     _libWrapperRef: null,
     _messageHeader: null,
+    _searchFormRef: null,
+
     _tplName: params.TPL_NAMES.home,
     _currTpl: null,
 
@@ -56,6 +58,9 @@ export default {
                 this._messageHeader = this._parentNode.querySelector(
                     '.message-header',
                 );
+                this._searchFormRef = this._parentNode.querySelector(
+                    '#search-form',
+                );
                 break;
             case params.TPL_NAMES.library:
                 this._libWrapperRef = this._parentNode.querySelector(
@@ -76,6 +81,9 @@ export default {
                 this._inputRef.addEventListener(
                     'input',
                     debounce(this.onInput, 500).bind(this),
+                );
+                this._searchFormRef.addEventListener('submit', e =>
+                    e.preventDefault(),
                 );
                 break;
             case params.TPL_NAMES.library:

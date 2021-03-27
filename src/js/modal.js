@@ -190,7 +190,6 @@ export default {
             dataProcess.currName === dpParams.FUNCTIONS.QUEUED
         ) {
             content.render();
-            console.log('update');
         }
     },
 
