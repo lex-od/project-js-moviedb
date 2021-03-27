@@ -54,6 +54,8 @@
         "handlebars-paginate": "^0.1.0",
         "lodash.debounce": "^4.0.8",
         "pagination-js": "^2.0.2",
+        "spin": "^0.0.1",
+        "spin.js": "^4.1.0",
         "tui-pagination": "^3.4.0"
     }
 }

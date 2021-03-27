@@ -4,6 +4,10 @@ import modal from './modal';
 import noImage from '../images/no-img.jpg';
 import noResults from '../images/nores3.jpg';
 import header from './header';
+
+import { spinner } from './spinner';
+import 'spin.js/spin.css';
+
 import dataProcess from './services/dataProcess';
 
 // 📌 Имортируем как объект content
@@ -11,9 +15,10 @@ import dataProcess from './services/dataProcess';
 export default {
     _parentNode: null,
     _movieListNode: null,
-    _goTopBtn: null,
+
     _tplName: 'gallery',
     _currTpl: null,
+    loader: document.querySelector('#loading'), //spinner
     page: 1,
     pageCount: 0,
 
@@ -25,6 +30,9 @@ export default {
         try {
             this.loadCurrTemplate();
 
+            spinner.spin(this.loader);
+            // const incomData = await this.getIncomingData();
+
             const incomData = await dataProcess.currFunc(this.page);
 
             // показываем ошибку при пустом массиве
@@ -35,6 +43,7 @@ export default {
             this.pageCount = incomData.total_pages || 0;
 
             this.renderCurrTplMarkup(incomData.results);
+            spinner.stop();
         } catch (err) {
             this._incomErrorHandler(err);
         }
@@ -44,23 +53,19 @@ export default {
         modal.linkParent('.backdrop');
         pagination.linkParent('.pagination');
         pagination.render();
+        // spinner.spin(this.loader);
     },
     _linkRefs() {
         this._movieListNode = this._parentNode.querySelector('.gallery-list');
-        // this._image = this._parentNode.querySelector('.gallery-picture');
+        // this.loader = this._parentNode.querySelector('#loading'); //spinner
 
-        // добавление кнопки scrollUp
-        // this._goTopBtn = document.querySelector('.back_to_top');
+        // this._image = this._parentNode.querySelector('.gallery-picture');
     },
     _bindEvents() {
         this._movieListNode?.addEventListener(
             'click',
             this.onMovieListClick.bind(this),
         );
-
-        // добавление кнопки scrollUp
-        // window.addEventListener('scroll', this.trackScroll.bind(this));
-        // this._goTopBtn.addEventListener('click', this.backToTop.bind(this));
     },
 
     addGenresStr(movieArr) {
@@ -120,20 +125,20 @@ export default {
     },
 
     // добавление кнопки scrollUp
-    trackScroll() {
-        const scrolled = window.pageYOffset;
-        const coords = document.documentElement.clientHeight;
-        if (scrolled > coords) {
-            this._goTopBtn.classList.add('back_to_top-show');
-        }
-    },
+    // trackScroll() {
+    //     const scrolled = window.pageYOffset;
+    //     const coords = document.documentElement.clientHeight;
+    //     if (scrolled > coords) {
+    //         this._goTopBtn.classList.add('back_to_top-show');
+    //     }
+    // },
 
-    backToTop() {
-        if (window.pageYOffset > 0) {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth',
-            });
-        }
-    },
+    // backToTop() {
+    //     if (window.pageYOffset > 0) {
+    //         window.scrollTo({
+    //             top: 0,
+    //             behavior: 'smooth',
+    //         });
+    //     }
+    // },
 };

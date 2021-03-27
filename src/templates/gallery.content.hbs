@@ -1,4 +1,4 @@
-<ul class=" list gallery-list"> 
+<ul class=" list gallery-list">
     {{#each this}}
     <li class="gallery-item" data-source={{id}}>
         <div class="image-wrapper">
@@ -20,7 +20,7 @@
             {{#if genres_str}}
             <p class="gallery-title accent-color">{{genres_str}} |<span>
                     {{/if}}
-                </span><span class="gallery-title accent-color">  {{release_date}}</span>
+                </span><span class="gallery-title accent-color"> {{release_date}}</span>
 
                 {{#if vote_average}}
                 <span class="vote-average">{{vote_average}}</span>
@@ -30,5 +30,3 @@
     </li>
     {{/each}}
 </ul>
-{{!-- добавление кнопки scrollUp --}}
-<a class="back_to_top" title="Page_UP"></a>
