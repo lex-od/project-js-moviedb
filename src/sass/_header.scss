@@ -172,6 +172,7 @@ input::-webkit-input-placeholder {
     border: 1px solid $secondaryColor;
     box-sizing: border-box;
     border-radius: 5px;
+    transition: all linear 200ms;
 
     &:first-child {
         margin-right: 20px;
@@ -181,13 +182,17 @@ input::-webkit-input-placeholder {
         }
     }
 
-    &.current-state {
-        background-color: #fff;
-    }
-}
+    &:hover {
+        // background: $secondaryAccentColor;
+        // border: none;
 
-.header-btn:hover,
-.header-btn:focus {
-    background: $secondaryAccentColor;
-    border: none;
+        box-shadow: 0 5px 30px 0 $primaryAccentColor;
+        border-color: $primaryAccentColor;
+    }
+
+    &.current-state {
+        color: $secondaryColor;
+        background-color: $primaryAccentColor;
+        border-color: $primaryAccentColor;
+    }
 }
