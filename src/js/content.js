@@ -88,7 +88,6 @@ export default {
             this._parentNode.innerHTML = `<div><img class="bad-request" src="${noResults}" alt="bad request" /></div>`;
             this._paginationNode.style.display = 'none';
             // this._paginationNode.innerHTML = '';
-            console.log(this._paginationNode);
             return;
         }
         movieArr = this.addGenresStr(movieArr);
