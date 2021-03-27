@@ -11,7 +11,7 @@ import dataProcess from './services/dataProcess';
 export default {
     _parentNode: null,
     _movieListNode: null,
-    _goTopBtn: null,
+
     _tplName: 'gallery',
     _currTpl: null,
     page: 1,
@@ -48,19 +48,12 @@ export default {
     _linkRefs() {
         this._movieListNode = this._parentNode.querySelector('.gallery-list');
         // this._image = this._parentNode.querySelector('.gallery-picture');
-
-        // добавление кнопки scrollUp
-        // this._goTopBtn = document.querySelector('.back_to_top');
     },
     _bindEvents() {
         this._movieListNode?.addEventListener(
             'click',
             this.onMovieListClick.bind(this),
         );
-
-        // добавление кнопки scrollUp
-        // window.addEventListener('scroll', this.trackScroll.bind(this));
-        // this._goTopBtn.addEventListener('click', this.backToTop.bind(this));
     },
 
     addGenresStr(movieArr) {
@@ -117,23 +110,5 @@ export default {
         const movieId = movieCard.dataset.source;
 
         modal.render(Number(movieId));
-    },
-
-    // добавление кнопки scrollUp
-    trackScroll() {
-        const scrolled = window.pageYOffset;
-        const coords = document.documentElement.clientHeight;
-        if (scrolled > coords) {
-            this._goTopBtn.classList.add('back_to_top-show');
-        }
-    },
-
-    backToTop() {
-        if (window.pageYOffset > 0) {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth',
-            });
-        }
     },
 };
