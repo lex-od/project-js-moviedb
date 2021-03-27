@@ -2,7 +2,7 @@ import { Spinner } from 'spin.js';
 
 const opts = {
     lines: 30,
-    length: 200,
+    length: 100,
     width: 10,
     radius: 50,
     scale: 0.55,

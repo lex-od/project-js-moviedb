@@ -5,6 +5,8 @@ import yesin from '../images/students/yesin.jpg';
 import myr from '../images/students/myrvoda.jpg';
 import khmara from '../images/students/khmara.jpg';
 import abramova from '../images/students/abramova.jpg';
+import deputat from '../images/students/deputat.jpg';
+import serdiuk from '../images/students/serdiuk.jpg';
 
 export default {
     _parentNode: null,
