@@ -62,11 +62,13 @@
         // max-height: 95%;
         display: flex;
         padding: 42px 28px 40px 28px;
-        // margin: auto;
-        // position: absolute;
-        // left: 50%;
-        // top: 50%;
-        // transform: translate(-50%, -50%);
+
+        margin: 10px auto;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
     }
     @include for-size(desktop) {
         width: 882px;
