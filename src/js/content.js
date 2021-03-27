@@ -7,10 +7,8 @@ import header from './header';
 
 import { spinner } from './spinner';
 import 'spin.js/spin.css';
-console.log(spinner);
 
 import dataProcess from './services/dataProcess';
-
 
 // 📌 Имортируем как объект content
 
@@ -32,9 +30,8 @@ export default {
         try {
             this.loadCurrTemplate();
 
-
             spinner.spin(this.loader);
-            const incomData = await this.getIncomingData();
+            // const incomData = await this.getIncomingData();
 
             const incomData = await dataProcess.currFunc(this.page);
 
@@ -127,24 +124,21 @@ export default {
         modal.render(Number(movieId));
     },
 
-
     // добавление кнопки scrollUp
-    trackScroll() {
-        const scrolled = window.pageYOffset;
-        const coords = document.documentElement.clientHeight;
-        if (scrolled > coords) {
-            this._goTopBtn.classList.add('back_to_top-show');
-        }
-    },
+    // trackScroll() {
+    //     const scrolled = window.pageYOffset;
+    //     const coords = document.documentElement.clientHeight;
+    //     if (scrolled > coords) {
+    //         this._goTopBtn.classList.add('back_to_top-show');
+    //     }
+    // },
 
-    backToTop() {
-        if (window.pageYOffset > 0) {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth',
-            });
-        }
-    },
-    
-
+    // backToTop() {
+    //     if (window.pageYOffset > 0) {
+    //         window.scrollTo({
+    //             top: 0,
+    //             behavior: 'smooth',
+    //         });
+    //     }
+    // },
 };

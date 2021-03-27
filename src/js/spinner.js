@@ -20,5 +20,5 @@ const opts = {
     className: 'spinner',
     position: 'relative',
 };
-const loader = document.querySelector('#loading');
+// const loader = document.querySelector('#loading');
 export const spinner = new Spinner(opts);
