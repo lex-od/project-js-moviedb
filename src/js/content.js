@@ -1,10 +1,11 @@
-import API from './services/api';
 import pagination from './pagination';
 import genresService from './services/genresService';
 import modal from './modal';
 import noImage from '../images/no-img.jpg';
 import noResults from '../images/nores3.jpg';
 import header from './header';
+import dataProcess from './services/dataProcess';
+
 // 📌 Имортируем как объект content
 
 export default {
@@ -24,7 +25,7 @@ export default {
         try {
             this.loadCurrTemplate();
 
-            const incomData = await this.getIncomingData();
+            const incomData = await dataProcess.currFunc(this.page);
 
             // показываем ошибку при пустом массиве
             if (!incomData.results.length) {
@@ -60,10 +61,6 @@ export default {
         // добавление кнопки scrollUp
         // window.addEventListener('scroll', this.trackScroll.bind(this));
         // this._goTopBtn.addEventListener('click', this.backToTop.bind(this));
-    },
-
-    getIncomingData() {
-        return API.getTrending({ page: this.page });
     },
 
     addGenresStr(movieArr) {

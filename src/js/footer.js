@@ -11,7 +11,7 @@ export default {
     _tpl: 'base',
 
     // ====
-    _movieListNode: null,
+    _studentsListNode: null,
 
     linkParent(selector) {
         this._parentNode = document.querySelector(selector);
@@ -28,26 +28,19 @@ export default {
     },
 
     _linkRefs() {
-        // this._movieListNode = this._parentNode.querySelector('.gallery-list');
-        this._movieListNode = this._parentNode.querySelector('.students-list');
+        this._studentsListNode = this._parentNode.querySelector(
+            '.students-list',
+        );
     },
     _bindEvents() {
-        this._movieListNode?.addEventListener(
+        this._studentsListNode?.addEventListener(
             'click',
-            this.onMovieListClick.bind(this),
+            this.onStudentsListClick.bind(this),
         );
     },
 
-    onMovieListClick(event) {
+    onStudentsListClick(event) {
         event.preventDefault();
-        // console.log('слушатель срабатывает ok');
-        // if (event.target === event.currentTarget) {
-        //     return;
-        // }
-        // const movieCard = event.target.closest('.gallery-item');
-        // const movieCard = event.target.closest('.students-list');
-
-        // const movieId = movieCard.dataset.source;
 
         studentsModal.render();
     },
