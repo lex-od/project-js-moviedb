@@ -1,21 +1,21 @@
 import API from '../js/services/api';
 import LocalStorageUtils from './services/localStorage';
 import noImg from '../images/no-img.jpg';
-// 📌 Имортируем как объект modal
+
+// :pushpin: Имортируем как объект modal
 
 export default {
     _parentNode: null,
-
     _tplName: 'base',
     _currTpl: null,
-
     _modalBackdropRef: null,
     _closeModalBtnRef: null,
     _addToWatchedBtnRef: null,
     _addToQueueBtnRef: null,
     _getRandoMovieBtnRef: null,
+    _modalWindowRef: null,
     _trailerBtn: null,
-
+    _trailerKey: null,
     localStorageUtils: new LocalStorageUtils(),
     movieId: null,
     movieObj: null,
@@ -23,11 +23,9 @@ export default {
     linkParent(selector) {
         this._parentNode = document.querySelector(selector);
     },
-
     async render(movieId) {
         try {
             this.loadCurrTemplate();
-
             const movieObj = await API.getMovieDetails({ movieId });
             this.movieId = movieId;
             // ===============================
@@ -59,20 +57,32 @@ export default {
             ...movieObj,
             imgTpl: noImg,
         });
-
         this._parentNode.classList.remove('modal-is-hidden');
+    },
+
+    async showTrailer() {
+        this._trailerKey = await API.getUrl(this.movieId);
+        this._parentNode.innerHTML = `<iframe
+                    class="iframe"
+                    src="https://www.youtube.com/embed/${this._trailerKey}"
+                >
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write;
+                    encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                </iframe>`;
     },
 
     clearMarkup() {
         document.body.classList.remove('scroll-hidden');
         this._parentNode.classList.add('modal-is-hidden');
         this._removeEventListeners.bind(this);
+        // this._parentNode.innerHTML = '';
     },
 
     _linkRefs() {
         this._modalBackdropRef = document.querySelector('.backdrop');
         this._closeModalBtnRef = this._parentNode.querySelector('#close-modal');
-
         this._addToWatchedBtnRef = this._parentNode.querySelector(
             '#js-watched-button',
         );
@@ -80,6 +90,7 @@ export default {
             '#js-queue-button',
         );
         this._trailerBtn = this._parentNode.querySelector('#trailerBtn');
+        this._modalWindowRef = this._parentNode.querySelector('#modalWindow');
     },
 
     _addEventListeners() {
@@ -97,7 +108,7 @@ export default {
             'click',
             this._addToQueue.bind(this),
         );
-        // this._trailerBtn.addEventListener('click', this.getVideoUrl.bind(this));
+        this._trailerBtn.addEventListener('click', this.showTrailer.bind(this));
     },
 
     _removeEventListeners() {
@@ -121,7 +132,10 @@ export default {
             'click',
             this._addToQueue.bind(this),
         );
-        // this._trailerBtn.removeEventListener('click', API.fetchTrailerFilm(id));
+        this._trailerBtn.removeEventListener(
+            'click',
+            this.showTrailer.bind(this),
+        );
     },
 
     _closeModalOnClick(e) {
@@ -174,7 +188,6 @@ export default {
             );
             this._addToWatchedBtnRef.textContent = 'ADD TO WATCHED';
         }
-
         this.localStorageUtils.toggleMoviesInList(
             this.localStorageUtils.listNames.queued,
             this.movieObj,
@@ -182,20 +195,15 @@ export default {
     },
 
     _incomErrorHandler(err) {
-        console.log(`${err.name}: ${err.message}`);
+        console.log(`${err.name} :${err.message}`);
     },
 };
 
-
 // const getRandoMovieBtnRef = document.querySelector('#get-random-movie');
-
 // getRandomMovie() {
 //     let randomId = Math.floor(100000 + Math.random() * 900000);
 //     console.log(randomId);
 //     this.render(randomId);
 // }
-
 // getRandoMovieBtnRef.addEventListener('click', this.getRandomMovie.bind(this));
-
 // console.log(Math.floor(100000 + Math.random() * 900000));
-
