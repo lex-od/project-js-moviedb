@@ -39,7 +39,7 @@
     height: 250px;
     @include for-size(tablet) {
         // width: 250px;
-        height: 180px;
+        height: 250px;
     }
     @include for-size(desktop) {
         // width: 250px;
@@ -53,19 +53,33 @@
 }
 
 .students-title {
-    font-family: 'Roboto', sans-serif;
-    font-size: 12px;
-    text-align: left;
-    margin-top: 10px;
-    margin-bottom: 0;
+    @include card-title();
+    // font-family: 'Roboto', sans-serif;
+    // font-size: 12px;
+    // text-align: left;
+    // margin-top: 10px;
+    // margin-bottom: 0;
+    // font-weight: 500;
+    // line-height: 1.18;
+    // white-space: nowrap;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
     padding-left: 10px;
-    font-weight: 500;
-    line-height: 1.18;
     width: 250px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     &:last-child {
         color: $secondaryAccentColor;
     }
 }
+
+.backdrop {
+    @include backdrop();
+
+    overflow-y: scroll;
+}
+// .scroll-hidden {
+//     @include scroll-hidden();
+// }
+
+// .modal-window {
+//     @include modal-window();
+// }

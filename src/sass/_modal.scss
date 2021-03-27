@@ -6,6 +6,7 @@
 
 .scroll-hidden {
     overflow: hidden;
+    // @include scroll-hidden();
 }
 
 .backdrop {
@@ -16,6 +17,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.2);
+    // @include backdrop();
 }
 
 .modal-window {
@@ -45,6 +47,7 @@
         width: 882px;
         padding: 50px 30px 40px 30px;
     }
+    // @include modal-window();
 }
 .close-modal {
     display: block;
