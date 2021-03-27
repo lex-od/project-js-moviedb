@@ -70,22 +70,9 @@
     border-radius: 5px;
 }
 .gallery-title {
-    font-family: 'Roboto', sans-serif;
-    font-size: 12px;
-    text-align: left;
-    margin-top: 10px;
-    margin-bottom: 0;
-    font-weight: 500;
-    line-height: 16px;
-    width: 280px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    padding-left: 6px;
 
-    padding-left: 2px;
-
-
-    // @include card-title();
+    @include card-title();
 
     &.accent-color {
         color: $secondaryAccentColor;
@@ -119,8 +106,8 @@
 .bad-request {
     margin: auto;
     border-radius: 5px;
+    min-height: 58vh;
 }
-
 
 // добавление кнопки scrollUp
 .back_to_top {
@@ -151,7 +138,3 @@
 .back_to_top-show {
     display: block;
 }
-.spinner {
-    min-height: 50vh;
-}
-
