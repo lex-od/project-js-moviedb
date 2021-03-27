@@ -48,6 +48,7 @@ export default {
             this.movieObj = { ...movieObj, imgTpl: noImg };
             document.body.classList.add('scroll-hidden');
             this._linkRefs();
+            this._trailerKey = await this.findTrailer();
             this._addEventListeners();
         } catch (err) {
             this._incomErrorHandler(err);
@@ -67,17 +68,29 @@ export default {
         this._parentNode.classList.remove('modal-is-hidden');
     },
 
-    async showTrailer() {
-        this._trailerKey = await API.getUrl(this.movieId);
+    findTrailer() {
+        return API.getUrl(this.movieId)
+            .then(response => response.json())
+            .then(videos => {
+                if (videos.results?.[0]?.site?.toLowerCase() === 'youtube') {
+                    this._trailerBtn.classList.remove('modal-is-hidden');
+                    return videos.results[0].key;
+                } else {
+                    return '1dgLEDdFddk';
+                }
+            });
+    },
+
+    showTrailer() {
         this._parentNode.innerHTML = `<iframe
-                    class="iframe"
-                    src="https://www.youtube.com/embed/${this._trailerKey}"
-                >
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write;
-                    encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                </iframe>`;
+            class="iframe"
+            src="https://www.youtube.com/embed/${this._trailerKey}"
+            >
+            title="YouTube video player" frameborder="0"
+             allow="accelerometer; autoplay; clipboard-write;
+            encrypted-media; gyroscope; picture-in-picture"
+             allowfullscreen
+        </iframe>`;
     },
 
     clearMarkup() {
