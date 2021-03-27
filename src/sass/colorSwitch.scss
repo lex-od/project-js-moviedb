@@ -1,0 +1,28 @@
+.theme-light {
+    --color-secondary: #fbfbfe;
+}
+.theme-dark {
+    --color-secondary: #243133;
+}
+html {
+    background: var(--color-secondary);
+}
+// .container {
+//     position: relative;
+// }
+
+#switch {
+    // position: absolute;
+    // left: 50%;
+    // top: 0%;
+    // z-index: 9999;
+    cursor: pointer;
+    // opacity: 1;
+    height: 40px;
+    background: url('./images/moon.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40px;
+    border-radius: 5px;
+    border: none;
+}
