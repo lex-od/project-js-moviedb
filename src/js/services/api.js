@@ -117,7 +117,9 @@ export default {
         )
             .then(response => response.json())
             .then(videos => {
-                return videos.results[0].key;
+                if (videos.results[0].site === 'YouTube') {
+                    return videos.results[0].key;
+                }
             })
             .catch(error => {
                 return '1dgLEDdFddk';

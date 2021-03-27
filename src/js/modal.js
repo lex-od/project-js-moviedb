@@ -41,6 +41,9 @@ export default {
                 movieObj.id,
             );
             // =============================
+            // if(!movieObj){
+            //     this.render().bind(this)
+            // }
             this.renderCurrTplMarkup(movieObj);
             this.movieObj = { ...movieObj, imgTpl: noImg };
             document.body.classList.add('scroll-hidden');
@@ -81,11 +84,12 @@ export default {
         document.body.classList.remove('scroll-hidden');
         this._parentNode.classList.add('modal-is-hidden');
         this._removeEventListeners.bind(this);
-        // this._parentNode.innerHTML = '';
+        setTimeout(() => {
+            this._parentNode.innerHTML = '';
+        }, 500);
     },
-
     _linkRefs() {
-        this._modalBackdropRef = document.querySelector('.backdrop');
+        this._modalBackdropRef = document.querySelector('#backdrop');
         this._closeModalBtnRef = this._parentNode.querySelector('#close-modal');
         this._addToWatchedBtnRef = this._parentNode.querySelector(
             '#js-watched-button',
