@@ -1,0 +1,8 @@
+{
+    "FUNCTIONS": {
+        "MOVIES": "searchMovies",
+        "TREND": "getTrending",
+        "WATCHED": "getWatched",
+        "QUEUED": "getQueued"
+    }
+}
