@@ -4,41 +4,41 @@
         "first_name": "Aleksey",
         "last_name": "Yesin",
         "avatar": "../images/students/yesin.jpg",
-        "job_title": "Future senior-pomidor & best teamlead"
+        "job_title": "Teamlead"
     },
     {
         "id": 2,
         "first_name": "Vlad",
         "last_name": "Deputat",
-        "avatar": "https://robohash.org/sedquibusdamalias.png?size=250x250&set=set1",
-        "job_title": "OMG scrammaster & TOP modal"
+        "avatar": "../images/students/deputat.jpg",
+        "job_title": "Scrammaster. Movies modal window"
     },
     {
         "id": 3,
-        "first_name": "Mykhailo",
-        "last_name": "Khmara",
-        "avatar": "../images/students/khmara.jpg",
-        "job_title": "Sales Representative"
+        "first_name": "Elena",
+        "last_name": "Serdiuk",
+        "avatar": "../images/students/serdiuk.jpg",
+        "job_title": "Header"
     },
     {
         "id": 4,
         "first_name": "Elena",
         "last_name": "Abramova",
         "avatar": "../images/students/abramova.jpg",
-        "job_title": "Technical Writer"
+        "job_title": "Content, spiner"
     },
     {
         "id": 5,
-        "first_name": "Dominique",
-        "last_name": "Skaife d'Ingerthorpe",
-        "avatar": "https://robohash.org/repellendusodiolaborum.png?size=250x250&set=set1",
-        "job_title": "GIS Technical Architect"
+        "first_name": "Mykhailo",
+        "last_name": "Khmara",
+        "avatar": "../images/students/khmara.jpg",
+        "job_title": "Pagination"
     },
     {
         "id": 6,
         "first_name": "Oleksandr",
         "last_name": "Myrvoda",
         "avatar": "../images/students/myrvoda.jpg",
-        "job_title": "Local storage & footer"
+        "job_title": "Local storage, footer modal window"
     }
 ]
