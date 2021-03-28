@@ -5,7 +5,6 @@
 }
 
 #pagDiv {
-    color: #000;
     max-width: 374px;
     box-sizing: border-box;
     display: flex;
@@ -64,7 +63,7 @@
 
 .btnRight {
     cursor: pointer;
-    color: black;
+
     width: 40px;
     height: 40px;
     background-image: url('./images/arrow-right.svg');
