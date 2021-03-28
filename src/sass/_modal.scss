@@ -116,6 +116,7 @@
 }
 
 .modal-info-count {
+    color: #000000;
     display: inline-block;
     background-color: $secondaryBackgroundColor;
     border-radius: 5px;
@@ -126,10 +127,13 @@
 }
 
 .modal-info-list-item {
+    color: #000000;
     margin-bottom: 10px;
 }
 
 .modal-info-description {
+    color: #000000;
+
     margin: 10px 0px 20px 0px;
     font-weight: 500;
     font-size: 12px;

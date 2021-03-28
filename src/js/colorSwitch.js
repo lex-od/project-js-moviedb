@@ -1,5 +1,8 @@
 const Thems = {
     themeSwthc: null,
+    body: null,
+    LIGHT: 'light-theme',
+    DARK: 'dark-theme',
 
     linkParent(selector) {
         this.parentNode = document.querySelector(selector);
@@ -7,36 +10,40 @@ const Thems = {
 
     linkRefs() {
         this.themeSwthc = document.querySelector('#switch');
+        this.body = document.querySelector('body');
     },
     bindEvents() {
         this.themeSwthc.addEventListener('click', this.toggleTheme.bind(this));
+        this.themeSwthc.addEventListener('click', this.storage.bind(this));
     },
     render() {
         this.linkRefs();
         this.bindEvents();
-        this.setTheme();
+        // this.setTheme();
+        this.storage();
         this.toggleTheme();
-        this.Storage();
     },
 
-    setTheme(themeName) {
-        localStorage.setItem('theme', themeName);
-        document.documentElement.className = themeName;
-    },
-
-    toggleTheme() {
-        if (localStorage.getItem('theme') === 'theme-light') {
-            this.setTheme('theme-dark');
+    // setTheme(themeName) {
+    //     localStorage.setItem('theme', themeName);
+    //     document.documentElement.className = themeName;
+    // },
+    storage() {
+        console.log(localStorage.getItem('theme'));
+        if (localStorage.getItem('theme') === this.DARK) {
+            this.body.classList.add(this.DARK);
         } else {
-            this.setTheme('theme-light');
+            this.body.classList.add(this.LIGHT);
         }
     },
-    // Immediately invoked function to set the theme on initial load
-    Storage() {
-        if (localStorage.getItem('theme') === 'theme-dark') {
-            this.setTheme('theme-dark');
+    toggleTheme() {
+        this.body.classList.toggle(this.DARK);
+        this.body.classList.toggle(this.LIGHT);
+
+        if (localStorage.getItem('theme') === this.LIGHT) {
+            localStorage.setItem('theme', this.DARK);
         } else {
-            this.setTheme('theme-light');
+            localStorage.setItem('theme', this.LIGHT);
         }
     },
 };
