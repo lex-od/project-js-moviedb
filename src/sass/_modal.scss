@@ -60,6 +60,7 @@
 }
 
 .modal-movie-title {
+    color: #000000;
     text-transform: uppercase;
     font-weight: 500;
     font-size: 20px;
@@ -83,6 +84,7 @@
 }
 
 .modal-info-about {
+    color: #000000;
     margin: 10px 0px;
     font-weight: 500;
     font-size: 12px;
@@ -97,6 +99,7 @@
 }
 
 .modal-info-list {
+    color: #000000;
     list-style: none;
     margin: 0;
 }
@@ -117,7 +120,6 @@
 }
 
 .modal-info-count {
-    color: #000000;
     display: inline-block;
     background-color: $secondaryBackgroundColor;
     border-radius: 5px;
@@ -128,7 +130,6 @@
 }
 
 .modal-info-list-item {
-    color: #000000;
     margin-bottom: 10px;
 }
 
