@@ -53,6 +53,7 @@
     cursor: pointer;
     border-radius: 50%;
     display: none;
+    opacity: 0.5;
     @include for-size(tablet) {
         width: 50px;
         height: 50px;
@@ -62,6 +63,7 @@
 }
 .back_to_top:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    opacity: 1;
 }
 .back_to_top-show {
     display: block;
