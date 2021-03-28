@@ -123,22 +123,4 @@ export default {
 
         modal.render(Number(movieId));
     },
-
-    // добавление кнопки scrollUp
-    // trackScroll() {
-    //     const scrolled = window.pageYOffset;
-    //     const coords = document.documentElement.clientHeight;
-    //     if (scrolled > coords) {
-    //         this._goTopBtn.classList.add('back_to_top-show');
-    //     }
-    // },
-
-    // backToTop() {
-    //     if (window.pageYOffset > 0) {
-    //         window.scrollTo({
-    //             top: 0,
-    //             behavior: 'smooth',
-    //         });
-    //     }
-    // },
 };
