@@ -48,9 +48,8 @@
     height: 20px;
     text-align: center;
     line-height: 40px;
-    background: $modalTextColor;
-    background-image: url('https://www.meme-arsenal.com/memes/eedf1e0ba68a87e7f45a146904c99ce8.jpg');
-    background-size: cover;
+    background-image: url('./images/arrowUp.png');
+    background-size: contain;
     cursor: pointer;
     border-radius: 50%;
     display: none;
