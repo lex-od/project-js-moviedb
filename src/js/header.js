@@ -3,6 +3,7 @@ import params from '../json/headerParams.json';
 import debounce from 'lodash.debounce';
 import dataProcess from './services/dataProcess';
 import dpParams from '../json/dataProcParams.json';
+import colorSwitch from './services/colorSwitch';
 
 // 📌 Имортируем как объект header
 
@@ -28,6 +29,8 @@ export default {
 
             this._linkRefs();
             this._bindEvents();
+
+            colorSwitch.init();
         } catch (err) {
             this._errorHandler(err);
         }

@@ -4,7 +4,6 @@ import footer from './js/footer';
 import genresService from './js/services/genresService';
 import dataProcess from './js/services/dataProcess';
 import dpParams from './json/dataProcParams.json';
-import colorSwitch from './js/services/colorSwitch';
 
 export default async function () {
     await genresService.loadFromApi();
@@ -18,6 +17,4 @@ export default async function () {
 
     footer.linkParent('#footer-container');
     footer.render();
-
-    colorSwitch.init();
 }
