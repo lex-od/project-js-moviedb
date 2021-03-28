@@ -53,4 +53,12 @@ export default class LocalStorageUtils {
             localStorage.setItem(otherList, JSON.stringify(otherMovies));
         }
     }
+
+    getTheme() {
+        return localStorage.getItem('theme');
+    }
+
+    setTheme(themeName) {
+        localStorage.setItem('theme', themeName);
+    }
 }
