@@ -2,8 +2,8 @@ import { Spinner } from 'spin.js';
 
 const opts = {
     lines: 30,
-    length: 100,
-    width: 10,
+    length: 200,
+    width: 15,
     radius: 50,
     scale: 0.55,
     corners: 1,
@@ -18,7 +18,7 @@ const opts = {
     shadow: '0 0 1px transparent',
     zIndex: 2000,
     className: 'spinner',
-    position: 'relative',
+    position: 'fixed',
 };
 // const loader = document.querySelector('#loading');
 export const spinner = new Spinner(opts);
