@@ -5,8 +5,8 @@
     <ul class="students-list-total list">
         {{#each this}}
         <li class="students-item" data-source={{id}}>
-            <div class="students-image-wrapper">   
-                <img src="{{avatar}}" alt="{{last_name}}" />
+            <div class="students-image-wrapper {{avatar}}">   
+                {{!-- <img src="{{avatar}}" alt="{{last_name}}" /> --}}
             </div>
 
             <ul class="students-card-content list">
