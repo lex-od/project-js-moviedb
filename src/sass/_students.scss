@@ -27,7 +27,7 @@
         align-self: flex-start;
         flex-basis: calc(100% / 2- 15px);
         margin-top: 15px;
-        margin-left: 25px;
+        margin-left: 15px;
     }
     @include for-size(desktop) {
         flex-basis: calc(100% / 3- 15px);
@@ -37,7 +37,7 @@
 .students-image-wrapper {
     overflow: hidden;
 
-    width: 250px;
+    // width: 250px;
     height: 250px;
     @include for-size(tablet) {
         height: 250px;
