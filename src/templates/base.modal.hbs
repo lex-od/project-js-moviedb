@@ -1,0 +1,105 @@
+
+<div class="modal-window" id="modalWindow">
+      <button class="close-modal" id="close-modal" type="button">
+     </button>
+     <div class="modal-img-container">
+         {{#if poster_path}}
+        <img
+          class="modal-image"
+           src="https://image.tmdb.org/t/p/w500{{poster_path}}"
+           alt="{{title}}"
+        />
+        {{else}}
+           <img
+            class="modal-image"
+            src="{{imgTpl}}"
+           alt="no-image"
+        />
+        {{/if}}
+    </div>
+    <div class="modal-info">
+        <h2 class="modal-movie-title">{{title}}</h2>
+        <div class="modal-info-lists">
+        <ul class="modal-info-list left">
+            {{#if vote_count}}
+            <li class="modal-info-list-item">Vote/Votes</li>
+            {{/if}}
+            <li class="modal-info-list-item">Popularity</li>
+            <li class="modal-info-list-item">Original Title</li>
+            {{#if genres}}
+            <li class="modal-info-list-item">Genre</li>
+            {{/if}}
+        </ul>
+         <ul class="modal-info-list">
+                {{#if vote_count}}
+            <li class="modal-info-list-item">
+                <span class="modal-info-average">
+                     {{vote_average}} 
+                </span> /
+                <span class="modal-info-count">
+                    {{vote_count}}
+                </span>
+            </li>
+            {{/if}}
+            <li class="modal-info-list-item">
+                {{popularity}}
+            </li>
+            <li class="modal-info-list-item to-uppercase">
+                {{original_title}}             
+            </li>
+            <li class="modal-info-list-item">
+                {{#if genres}}
+                {{#each genres}}
+                    <span class="modal-info-genres-text-list-data"> {{this.name}} </span>
+                {{/each}}
+                {{/if}}
+            </li>
+        </ul>
+        </div>
+        <h3 class="modal-info-about to-uppercase">About</h3>
+        <p class="modal-info-description">{{overview}}</p>
+        <div class="modal-info-buttons">
+        {{!-- watched button  --}}
+            {{#if movieInWatched}}
+            <button
+                type="button"
+                class="modal-info-button modal-info-button-active to-uppercase"
+                id="js-watched-button"
+            >
+                Remove from watched
+            </button>
+            
+            {{else}}
+            <button
+                type="button"
+                class="modal-info-button to-uppercase"
+                id="js-watched-button"
+            >
+                Add to watched
+            </button>
+            {{/if}}
+        {{!-- queue button  --}}
+            {{#if movieInQueue}}
+              <button
+                type="button"
+                class="modal-info-button modal-info-button-active to-uppercase"
+                id="js-queue-button"
+            >
+                Remove from queue
+            </button>
+            {{else}}
+               <button
+                type="button"
+                class="modal-info-button to-uppercase"
+                id="js-queue-button"
+            >
+                Add to queue
+            </button>
+            {{/if}}
+          
+        </div>
+        <div>
+            <button class="watch-trailer-btn modal-is-hidden" id="trailerBtn" type="button">WATCH TRAILER</button>
+        </div>
+    </div>
+</div>

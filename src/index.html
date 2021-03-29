@@ -4,9 +4,34 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Webpack assembly</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+            rel="stylesheet"
+        />
+        <title>Filmoteka</title>
     </head>
     <body>
-        <!--  -->
+        <header class="header" id="header-container">
+            <div class="container"></div>
+        </header>
+        <main>
+            <div class="container">
+                <div class="gallery-content" id="content">
+                    <!--  -->
+                </div>
+                <!-- Spinner -->
+                <div classs="spinner" id="loading"></div>
+                <!--  -->
+                <div class="pagination pagination-centered" id="pagDiv"></div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container" id="footer-container">
+                <!--  -->
+            </div>
+        </footer>
+        <div class="backdrop modal-is-hidden" id="backdrop"></div>
     </body>
 </html>

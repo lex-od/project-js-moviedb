@@ -1,0 +1,37 @@
+body.light-theme {
+    background-color: #fff;
+    color: black;
+}
+
+body.dark-theme {
+    background-image: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.56),
+            rgba(0, 0, 0, 0.56)
+        ),
+        url('./images/hotoVlad.jpg');
+
+    background-repeat: repeat;
+    background-size: contain;
+    color: #fff;
+}
+// url('./images/technological.jpg');
+// url('./images/hotoVlad.jpg');
+// url('./images/pngtree.jpg');
+#switch {
+    position: absolute;
+    right: 20px;
+    top: 12px;
+
+    cursor: pointer;
+
+    width: 40px;
+    height: 40px;
+    background: url('./images/moon.png');
+    // background: url('./images/apollo.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25px;
+    border-radius: 5px;
+    border: none;
+}

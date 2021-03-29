@@ -1,0 +1,91 @@
+@mixin for-size($range) {
+    // $mobile: 320px;
+    $tablet: 768px;
+    $desktop: 1200px;
+
+    @if $range == mobile-only {
+        @media screen and (max-width: #{$tablet - 1}) {
+            @content;
+        }
+    } @else if $range == tablet-only {
+        @media screen  and (min-width: $tablet) and (max-width: #{$desktop - 1}) {
+            @content;
+        }
+    } @else if $range == mobile-tablet {
+        @media screen and (max-width: #{$desktop - 1}) {
+            @content;
+        }
+
+        // } @else if $range == mobile {
+        //     @media screen and (min-width: $mobile) {
+        //         @content;
+        //     }
+    } @else if $range == tablet {
+        @media screen and (min-width: $tablet) {
+            @content;
+        }
+    } @else if $range == desktop {
+        @media screen and (min-width: $desktop) {
+            @content;
+        }
+    }
+}
+// ========== MODAL BLOCK =================
+@mixin backdrop() {
+    transition: all 300ms linear;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+@mixin scroll-hidden() {
+    overflow: hidden;
+}
+
+@mixin modal-window() {
+    width: 280px;
+    position: relative;
+    margin: 10px auto;
+    padding: 48px 20px 41px 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+        0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    font-family: inherit;
+    font-weight: 500;
+
+    @include for-size(tablet) {
+        width: 618px;
+        // max-height: 95%;
+        display: flex;
+        padding: 42px 28px 40px 28px;
+
+        margin: 10px auto;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    @include for-size(desktop) {
+        width: 882px;
+        padding: 50px 30px 40px 30px;
+    }
+}
+// ======= TEXT DECORATION =============
+
+@mixin card-title() {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-weight: 500;
+    line-height: 16px;
+    width: 280px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
