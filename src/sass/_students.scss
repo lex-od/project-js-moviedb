@@ -2,6 +2,8 @@
     display: flex;
     flex-wrap: wrap;
     margin-top: -15px;
+
+    color: #000;
     // overflow: hidden;
     // overflow-y: scroll;
     @include for-size(tablet) {
